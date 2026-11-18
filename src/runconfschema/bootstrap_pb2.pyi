@@ -23,7 +23,7 @@ class BootRequest(_message.Message):
 
     APPARATUS_FIELD_NUMBER: _builtins.int
     MANAGER_TYPE_FIELD_NUMBER: _builtins.int
-    CONFIG_FILE_NAME_FIELD_NUMBER: _builtins.int
+    CONF_DIRECTORY_FIELD_NUMBER: _builtins.int
     SESSION_ID_FIELD_NUMBER: _builtins.int
     OUTPUT_DIRECTORY_FIELD_NUMBER: _builtins.int
     BASE_URL_FIELD_NUMBER: _builtins.int
@@ -32,7 +32,7 @@ class BootRequest(_message.Message):
     apparatus: _builtins.str
     manager_type: _builtins.str
     """check with James if this should be an enum;"""
-    config_file_name: _builtins.str
+    conf_directory: _builtins.str
     session_id: _builtins.str
     output_directory: _builtins.str
     base_url: _builtins.str
@@ -48,7 +48,7 @@ class BootRequest(_message.Message):
         *,
         apparatus: _builtins.str = ...,
         manager_type: _builtins.str = ...,
-        config_file_name: _builtins.str = ...,
+        conf_directory: _builtins.str = ...,
         session_id: _builtins.str = ...,
         output_directory: _builtins.str = ...,
         base_url: _builtins.str | None = ...,
@@ -57,7 +57,7 @@ class BootRequest(_message.Message):
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _typing.Literal["_base_url", b"_base_url", "_ops_url", b"_ops_url", "base_url", b"base_url", "frontend_endpoint", b"frontend_endpoint", "ops_url", b"ops_url"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["_base_url", b"_base_url", "_ops_url", b"_ops_url", "apparatus", b"apparatus", "base_url", b"base_url", "config_file_name", b"config_file_name", "frontend_endpoint", b"frontend_endpoint", "manager_type", b"manager_type", "ops_url", b"ops_url", "output_directory", b"output_directory", "session_id", b"session_id"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["_base_url", b"_base_url", "_ops_url", b"_ops_url", "apparatus", b"apparatus", "base_url", b"base_url", "conf_directory", b"conf_directory", "frontend_endpoint", b"frontend_endpoint", "manager_type", b"manager_type", "ops_url", b"ops_url", "output_directory", b"output_directory", "session_id", b"session_id"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     _WhichOneofReturnType__base_url: _TypeAlias = _typing.Literal["base_url"]  # noqa: Y015
     _WhichOneofArgType__base_url: _TypeAlias = _typing.Literal["_base_url", b"_base_url"]  # noqa: Y015

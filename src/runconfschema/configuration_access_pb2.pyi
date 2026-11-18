@@ -8,6 +8,7 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf.internal import containers as _containers
 from runconfschema import common_pb2 as _common_pb2
+from runconfschema import state_pb2 as _state_pb2
 import builtins as _builtins
 import sys
 import typing as _typing
@@ -105,6 +106,7 @@ class Initialisation(_message.Message):
     DROPDOWNS_FIELD_NUMBER: _builtins.int
     ADDITIONAL_INFO_FIELD_NUMBER: _builtins.int
     BACKEND_ENDPOINT_FIELD_NUMBER: _builtins.int
+    CONFIG_TREES_FIELD_NUMBER: _builtins.int
     runconf_version: _builtins.str
     """the version of the backend;"""
     daq_version: _builtins.str
@@ -128,6 +130,10 @@ class Initialisation(_message.Message):
     def backend_endpoint(self) -> _common_pb2.Endpoint:
         """the endpoint of the backend, so that the backend can send messages to it;"""
 
+    @_builtins.property
+    def config_trees(self) -> _containers.RepeatedCompositeFieldContainer[_state_pb2.NodeStatusInfo]:
+        """should we add a version of the messages?"""
+
     def __init__(
         self,
         *,
@@ -138,10 +144,11 @@ class Initialisation(_message.Message):
         dropdowns: _abc.Mapping[_builtins.str, Global___DropDownContent] | None = ...,
         additional_info: _builtins.str | None = ...,
         backend_endpoint: _common_pb2.Endpoint | None = ...,
+        config_trees: _abc.Iterable[_state_pb2.NodeStatusInfo] | None = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _typing.Literal["_additional_info", b"_additional_info", "additional_info", b"additional_info", "backend_endpoint", b"backend_endpoint"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["_additional_info", b"_additional_info", "additional_info", b"additional_info", "apparatus", b"apparatus", "backend_endpoint", b"backend_endpoint", "daq_version", b"daq_version", "dropdowns", b"dropdowns", "runconf_version", b"runconf_version", "structure", b"structure"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["_additional_info", b"_additional_info", "additional_info", b"additional_info", "apparatus", b"apparatus", "backend_endpoint", b"backend_endpoint", "config_trees", b"config_trees", "daq_version", b"daq_version", "dropdowns", b"dropdowns", "runconf_version", b"runconf_version", "structure", b"structure"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     _WhichOneofReturnType__additional_info: _TypeAlias = _typing.Literal["additional_info"]  # noqa: Y015
     _WhichOneofArgType__additional_info: _TypeAlias = _typing.Literal["_additional_info", b"_additional_info"]  # noqa: Y015
@@ -209,25 +216,16 @@ class ConfigurationOutcome(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
     RESPONSE_FIELD_NUMBER: _builtins.int
-    OKS_FILE_FIELD_NUMBER: _builtins.int
-    CURRENT_FILE_FIELD_NUMBER: _builtins.int
-    SESSION_NAME_FIELD_NUMBER: _builtins.int
-    oks_file: _builtins.str
-    current_file: _builtins.str
-    session_name: _builtins.str
     @_builtins.property
     def response(self) -> _common_pb2.Response: ...
     def __init__(
         self,
         *,
         response: _common_pb2.Response | None = ...,
-        oks_file: _builtins.str = ...,
-        current_file: _builtins.str = ...,
-        session_name: _builtins.str = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _typing.Literal["response", b"response"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["current_file", b"current_file", "oks_file", b"oks_file", "response", b"response", "session_name", b"session_name"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["response", b"response"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 

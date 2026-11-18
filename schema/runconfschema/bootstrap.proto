@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package dunedaq.runconfschema;
+
+import "runconfschema/common.proto";
+
+message BootRequest {
+  string apparatus = 1;
+  string manager_type = 2;   // check with James if this should be an enum;
+  string conf_directory = 3;
+  string session_id = 5;
+  string output_directory = 6;
+  optional string base_url = 7;   // how can we generalise the URLs? 
+  optional string ops_url = 8;
+  // do we need a log level?  
+
+  Endpoint frontend_endpoint = 9;   // the endpoint of the frontend, so that the backend can send messages to it;
+}
+

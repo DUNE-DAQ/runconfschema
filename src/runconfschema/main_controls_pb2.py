@@ -26,17 +26,17 @@ from google.protobuf import any_pb2 as google_dot_protobuf_dot_any__pb2
 from runconfschema import common_pb2 as runconfschema_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!runconfschema/main_controls.proto\x12\x15\x64unedaq.runconfschema\x1a\x19google/protobuf/any.proto\x1a\x1arunconfschema/common.proto\"H\n\x12MainCommandRequest\x12\x32\n\x07\x63ommand\x18\x01 \x01(\x0e\x32!.dunedaq.runconfschema.AppCommand\"\xb4\x01\n\x13MainCommandResponse\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x32\n\x07\x63ommand\x18\x02 \x01(\x0e\x32!.dunedaq.runconfschema.AppCommand\x12*\n\x07\x64\x65tails\x18\x03 \x01(\x0b\x32\x14.google.protobuf.AnyH\x00\x88\x01\x01\x42\n\n\x08_details*<\n\nAppCommand\x12\x08\n\x04QUIT\x10\x00\x12\x0f\n\x0b\x43REATE_QUIT\x10\x01\x12\t\n\x05RESET\x10\x02\x12\x08\n\x04HELP\x10\x03\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!runconfschema/main_controls.proto\x12\x15\x64unedaq.runconfschema\x1a\x19google/protobuf/any.proto\x1a\x1arunconfschema/common.proto\"O\n\x15RunconfCommandRequest\x12\x36\n\x07\x63ommand\x18\x01 \x01(\x0e\x32%.dunedaq.runconfschema.RunconfCommand\"\xbb\x01\n\x16RunconfCommandResponse\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x36\n\x07\x63ommand\x18\x02 \x01(\x0e\x32%.dunedaq.runconfschema.RunconfCommand\x12*\n\x07\x64\x65tails\x18\x03 \x01(\x0b\x32\x14.google.protobuf.AnyH\x00\x88\x01\x01\x42\n\n\x08_details*@\n\x0eRunconfCommand\x12\x08\n\x04QUIT\x10\x00\x12\x0f\n\x0b\x43REATE_QUIT\x10\x01\x12\t\n\x05RESET\x10\x02\x12\x08\n\x04HELP\x10\x03\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'runconfschema.main_controls_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_APPCOMMAND']._serialized_start=372
-  _globals['_APPCOMMAND']._serialized_end=432
-  _globals['_MAINCOMMANDREQUEST']._serialized_start=115
-  _globals['_MAINCOMMANDREQUEST']._serialized_end=187
-  _globals['_MAINCOMMANDRESPONSE']._serialized_start=190
-  _globals['_MAINCOMMANDRESPONSE']._serialized_end=370
+  _globals['_RUNCONFCOMMAND']._serialized_start=386
+  _globals['_RUNCONFCOMMAND']._serialized_end=450
+  _globals['_RUNCONFCOMMANDREQUEST']._serialized_start=115
+  _globals['_RUNCONFCOMMANDREQUEST']._serialized_end=194
+  _globals['_RUNCONFCOMMANDRESPONSE']._serialized_start=197
+  _globals['_RUNCONFCOMMANDRESPONSE']._serialized_end=384
 # @@protoc_insertion_point(module_scope)

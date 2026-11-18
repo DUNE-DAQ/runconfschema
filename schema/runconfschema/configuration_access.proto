@@ -3,7 +3,7 @@ syntax = "proto3";
 package dunedaq.runconfschema;
 
 import "runconfschema/common.proto";
-
+import "runconfschema/state.proto";
 
 // ------------
 // Buidling blocks
@@ -30,6 +30,7 @@ message Initialisation {
    optional string additional_info = 6;   // any additional message to be displayed at the top of the page
    Endpoint backend_endpoint = 7;   // the endpoint of the backend, so that the backend can send messages to it;
 
+   repeated NodeStatusInfo config_trees = 8;
    // should we add a version of the messages?
 }
 
@@ -44,9 +45,6 @@ message DropDownUpdate {
 // Response to Open
 message ConfigurationOutcome {
     Response response = 1;
-    string oks_file = 2;   
-    string current_file = 3;  
-    string session_name = 4;  
 }
 
 // ------------

@@ -6,7 +6,7 @@ package dunedaq.runconfschema;
 import "google/protobuf/any.proto";
 import "runconfschema/common.proto";
 
-enum AppCommand {
+enum RunconfCommand {
     QUIT = 0; // Quit completely
     CREATE_QUIT = 1; // For now we assume that creating a config = quitting
     RESET = 2; // Reset to initial state
@@ -14,14 +14,14 @@ enum AppCommand {
 }
 
 // Messages for quit/create/cancel buttons on menus
-message MainCommandRequest{
-    AppCommand command = 1; // command to send
+message RunconfCommandRequest{
+    RunconfCommand command = 1; // command to send
 }
 
 // Backend can return info string from commands (text to display etc.)
-message MainCommandResponse {
+message RunconfCommandResponse {
   Response response = 1; // Response
-  AppCommand command = 2; // Command we've sent (for book keeping)
+  RunconfCommand command = 2; // Command we've sent (for book keeping)
   /*
     Quit: Details is empty
     Create Quit: Path to newly created configuration

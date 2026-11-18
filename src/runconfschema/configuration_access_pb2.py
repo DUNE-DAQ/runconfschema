@@ -23,9 +23,10 @@ _sym_db = _symbol_database.Default()
 
 
 from runconfschema import common_pb2 as runconfschema_dot_common__pb2
+from runconfschema import state_pb2 as runconfschema_dot_state__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n(runconfschema/configuration_access.proto\x12\x15\x64unedaq.runconfschema\x1a\x1arunconfschema/common.proto\"!\n\x0f\x44ropDownContent\x12\x0e\n\x06values\x18\x01 \x03(\t\"\xdc\x03\n\x0eInitialisation\x12\x17\n\x0frunconf_version\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x61q_version\x18\x02 \x01(\t\x12\x11\n\tapparatus\x18\x03 \x01(\t\x12G\n\tstructure\x18\x04 \x03(\x0b\x32\x34.dunedaq.runconfschema.Initialisation.StructureEntry\x12G\n\tdropdowns\x18\x05 \x03(\x0b\x32\x34.dunedaq.runconfschema.Initialisation.DropdownsEntry\x12\x1c\n\x0f\x61\x64\x64itional_info\x18\x06 \x01(\tH\x00\x88\x01\x01\x12\x39\n\x10\x62\x61\x63kend_endpoint\x18\x07 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Endpoint\x1a\x30\n\x0eStructureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1aX\n\x0e\x44ropdownsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.dunedaq.runconfschema.DropDownContent:\x02\x38\x01\x42\x12\n\x10_additional_info\"\xed\x01\n\x0e\x44ropDownUpdate\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x41\n\x06update\x18\x02 \x03(\x0b\x32\x31.dunedaq.runconfschema.DropDownUpdate.UpdateEntry\x12\x0e\n\x06resets\x18\x03 \x03(\t\x1aU\n\x0bUpdateEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.dunedaq.runconfschema.DropDownContent:\x02\x38\x01\"\x87\x01\n\x14\x43onfigurationOutcome\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x10\n\x08oks_file\x18\x02 \x01(\t\x12\x14\n\x0c\x63urrent_file\x18\x03 \x01(\t\x12\x14\n\x0csession_name\x18\x04 \x01(\t\"/\n\x11\x44ropDownSelection\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"w\n\x04Open\x12=\n\tselection\x18\x01 \x03(\x0b\x32*.dunedaq.runconfschema.Open.SelectionEntry\x1a\x30\n\x0eSelectionEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n(runconfschema/configuration_access.proto\x12\x15\x64unedaq.runconfschema\x1a\x1arunconfschema/common.proto\x1a\x19runconfschema/state.proto\"!\n\x0f\x44ropDownContent\x12\x0e\n\x06values\x18\x01 \x03(\t\"\x99\x04\n\x0eInitialisation\x12\x17\n\x0frunconf_version\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x61q_version\x18\x02 \x01(\t\x12\x11\n\tapparatus\x18\x03 \x01(\t\x12G\n\tstructure\x18\x04 \x03(\x0b\x32\x34.dunedaq.runconfschema.Initialisation.StructureEntry\x12G\n\tdropdowns\x18\x05 \x03(\x0b\x32\x34.dunedaq.runconfschema.Initialisation.DropdownsEntry\x12\x1c\n\x0f\x61\x64\x64itional_info\x18\x06 \x01(\tH\x00\x88\x01\x01\x12\x39\n\x10\x62\x61\x63kend_endpoint\x18\x07 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Endpoint\x12;\n\x0c\x63onfig_trees\x18\x08 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\x1a\x30\n\x0eStructureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1aX\n\x0e\x44ropdownsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.dunedaq.runconfschema.DropDownContent:\x02\x38\x01\x42\x12\n\x10_additional_info\"\xed\x01\n\x0e\x44ropDownUpdate\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x41\n\x06update\x18\x02 \x03(\x0b\x32\x31.dunedaq.runconfschema.DropDownUpdate.UpdateEntry\x12\x0e\n\x06resets\x18\x03 \x03(\t\x1aU\n\x0bUpdateEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.dunedaq.runconfschema.DropDownContent:\x02\x38\x01\"I\n\x14\x43onfigurationOutcome\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\"/\n\x11\x44ropDownSelection\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"w\n\x04Open\x12=\n\tselection\x18\x01 \x03(\x0b\x32*.dunedaq.runconfschema.Open.SelectionEntry\x1a\x30\n\x0eSelectionEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -40,24 +41,24 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_DROPDOWNUPDATE_UPDATEENTRY']._serialized_options = b'8\001'
   _globals['_OPEN_SELECTIONENTRY']._loaded_options = None
   _globals['_OPEN_SELECTIONENTRY']._serialized_options = b'8\001'
-  _globals['_DROPDOWNCONTENT']._serialized_start=95
-  _globals['_DROPDOWNCONTENT']._serialized_end=128
-  _globals['_INITIALISATION']._serialized_start=131
-  _globals['_INITIALISATION']._serialized_end=607
-  _globals['_INITIALISATION_STRUCTUREENTRY']._serialized_start=449
-  _globals['_INITIALISATION_STRUCTUREENTRY']._serialized_end=497
-  _globals['_INITIALISATION_DROPDOWNSENTRY']._serialized_start=499
-  _globals['_INITIALISATION_DROPDOWNSENTRY']._serialized_end=587
-  _globals['_DROPDOWNUPDATE']._serialized_start=610
-  _globals['_DROPDOWNUPDATE']._serialized_end=847
-  _globals['_DROPDOWNUPDATE_UPDATEENTRY']._serialized_start=762
-  _globals['_DROPDOWNUPDATE_UPDATEENTRY']._serialized_end=847
-  _globals['_CONFIGURATIONOUTCOME']._serialized_start=850
-  _globals['_CONFIGURATIONOUTCOME']._serialized_end=985
-  _globals['_DROPDOWNSELECTION']._serialized_start=987
-  _globals['_DROPDOWNSELECTION']._serialized_end=1034
-  _globals['_OPEN']._serialized_start=1036
-  _globals['_OPEN']._serialized_end=1155
-  _globals['_OPEN_SELECTIONENTRY']._serialized_start=1107
-  _globals['_OPEN_SELECTIONENTRY']._serialized_end=1155
+  _globals['_DROPDOWNCONTENT']._serialized_start=122
+  _globals['_DROPDOWNCONTENT']._serialized_end=155
+  _globals['_INITIALISATION']._serialized_start=158
+  _globals['_INITIALISATION']._serialized_end=695
+  _globals['_INITIALISATION_STRUCTUREENTRY']._serialized_start=537
+  _globals['_INITIALISATION_STRUCTUREENTRY']._serialized_end=585
+  _globals['_INITIALISATION_DROPDOWNSENTRY']._serialized_start=587
+  _globals['_INITIALISATION_DROPDOWNSENTRY']._serialized_end=675
+  _globals['_DROPDOWNUPDATE']._serialized_start=698
+  _globals['_DROPDOWNUPDATE']._serialized_end=935
+  _globals['_DROPDOWNUPDATE_UPDATEENTRY']._serialized_start=850
+  _globals['_DROPDOWNUPDATE_UPDATEENTRY']._serialized_end=935
+  _globals['_CONFIGURATIONOUTCOME']._serialized_start=937
+  _globals['_CONFIGURATIONOUTCOME']._serialized_end=1010
+  _globals['_DROPDOWNSELECTION']._serialized_start=1012
+  _globals['_DROPDOWNSELECTION']._serialized_end=1059
+  _globals['_OPEN']._serialized_start=1061
+  _globals['_OPEN']._serialized_end=1180
+  _globals['_OPEN_SELECTIONENTRY']._serialized_start=1132
+  _globals['_OPEN_SELECTIONENTRY']._serialized_end=1180
 # @@protoc_insertion_point(module_scope)

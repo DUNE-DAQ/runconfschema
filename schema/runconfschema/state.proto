@@ -18,40 +18,36 @@ enum NodeGroup {
   ADJUSTABLE = 1;
 }
 
-// Info about the node
+
+// // Info about the node
 message NodeStatusInfo {
   NodeStatus node_state = 1;  // Is the node enabled/disabled/has its parent disabled?
   repeated string node_path = 2; // Path to the node in the tree
   optional double node_value = 3; // Value of the node (directly asks the node so will not be a NodeStatus)
   optional string tooltip = 4; // Additional information to display if a GUI representing the node is hovered over
+  optional NodeGroup node_group = 5; // Group of the node (toggles or adjustable)
+  repeated NodeStatusInfo children = 6; // Children of the node (note: This does not need to be sent unless we're building a tree, but it is included here for completeness)
 }
 
-// The full tree structure as a "dictionary"
-message LabelledNode {
-  string label = 1;
-  NodeGroup group =2;
-  NodeStatusInfo node_info = 3;
-  repeated LabelledNode children = 4;
-}
-
-/// Helper functions for setting node values
-// Request all nodes of a given type (adjustable or toggleable)
-message RequestNodes {
+message RequestSetNodeValue {
   NodeGroup node_group = 1;
-  Response response = 2;
-  repeated LabelledNode nodes = 3; 
+  repeated string path = 2; // Path to the node in the tree
+  oneof node_value { // The value to set the node to
+    double double_value = 3;
+    bool bool_value = 4;
+    NodeStatus node_status_value = 5;
+  }
 }
 
-// Messages TO the runconf-ui backend
-message SetNodeValue {
-    repeated string path = 1;
-    oneof node_value {
-        double double_value = 2;
-        bool bool_value = 3;
-        NodeStatus node_status_value = 4;
-    }
+message RequestNodeStatus {
+  NodeGroup node_group = 1;
+  repeated string path = 2; // Path to the node in the tree
 }
 
-message ResetNodeValue{
-    repeated string path = 1;
+message ResponseNodeStatus {
+  // Sends changed nodes
+  Response response = 1; // Response message indicating success/failure of the request
+  repeated NodeStatusInfo nodes = 2; // List of nodes that have changed (or the requested node if only one was requested)
 }
+
+message RequestReset {}

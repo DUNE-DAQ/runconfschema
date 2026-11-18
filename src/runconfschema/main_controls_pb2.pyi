@@ -19,46 +19,46 @@ else:
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
-class _AppCommand:
+class _RunconfCommand:
     ValueType = _typing.NewType("ValueType", _builtins.int)
     V: _TypeAlias = ValueType  # noqa: Y015
 
-class _AppCommandEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_AppCommand.ValueType], _builtins.type):
+class _RunconfCommandEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_RunconfCommand.ValueType], _builtins.type):
     DESCRIPTOR: _descriptor.EnumDescriptor
-    QUIT: _AppCommand.ValueType  # 0
+    QUIT: _RunconfCommand.ValueType  # 0
     """Quit completely"""
-    CREATE_QUIT: _AppCommand.ValueType  # 1
+    CREATE_QUIT: _RunconfCommand.ValueType  # 1
     """For now we assume that creating a config = quitting"""
-    RESET: _AppCommand.ValueType  # 2
+    RESET: _RunconfCommand.ValueType  # 2
     """Reset to initial state"""
-    HELP: _AppCommand.ValueType  # 3
+    HELP: _RunconfCommand.ValueType  # 3
     """Display the help message"""
 
-class AppCommand(_AppCommand, metaclass=_AppCommandEnumTypeWrapper): ...
+class RunconfCommand(_RunconfCommand, metaclass=_RunconfCommandEnumTypeWrapper): ...
 
-QUIT: AppCommand.ValueType  # 0
+QUIT: RunconfCommand.ValueType  # 0
 """Quit completely"""
-CREATE_QUIT: AppCommand.ValueType  # 1
+CREATE_QUIT: RunconfCommand.ValueType  # 1
 """For now we assume that creating a config = quitting"""
-RESET: AppCommand.ValueType  # 2
+RESET: RunconfCommand.ValueType  # 2
 """Reset to initial state"""
-HELP: AppCommand.ValueType  # 3
+HELP: RunconfCommand.ValueType  # 3
 """Display the help message"""
-Global___AppCommand: _TypeAlias = AppCommand  # noqa: Y015
+Global___RunconfCommand: _TypeAlias = RunconfCommand  # noqa: Y015
 
 @_typing.final
-class MainCommandRequest(_message.Message):
+class RunconfCommandRequest(_message.Message):
     """Messages for quit/create/cancel buttons on menus"""
 
     DESCRIPTOR: _descriptor.Descriptor
 
     COMMAND_FIELD_NUMBER: _builtins.int
-    command: Global___AppCommand.ValueType
+    command: Global___RunconfCommand.ValueType
     """command to send"""
     def __init__(
         self,
         *,
-        command: Global___AppCommand.ValueType = ...,
+        command: Global___RunconfCommand.ValueType = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
@@ -66,10 +66,10 @@ class MainCommandRequest(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___MainCommandRequest: _TypeAlias = MainCommandRequest  # noqa: Y015
+Global___RunconfCommandRequest: _TypeAlias = RunconfCommandRequest  # noqa: Y015
 
 @_typing.final
-class MainCommandResponse(_message.Message):
+class RunconfCommandResponse(_message.Message):
     """Backend can return info string from commands (text to display etc.)"""
 
     DESCRIPTOR: _descriptor.Descriptor
@@ -77,7 +77,7 @@ class MainCommandResponse(_message.Message):
     RESPONSE_FIELD_NUMBER: _builtins.int
     COMMAND_FIELD_NUMBER: _builtins.int
     DETAILS_FIELD_NUMBER: _builtins.int
-    command: Global___AppCommand.ValueType
+    command: Global___RunconfCommand.ValueType
     """Command we've sent (for book keeping)"""
     @_builtins.property
     def response(self) -> _common_pb2.Response:
@@ -98,7 +98,7 @@ class MainCommandResponse(_message.Message):
         self,
         *,
         response: _common_pb2.Response | None = ...,
-        command: Global___AppCommand.ValueType = ...,
+        command: Global___RunconfCommand.ValueType = ...,
         details: _any_pb2.Any | None = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _typing.Literal["_details", b"_details", "details", b"details", "response", b"response"]  # noqa: Y015
@@ -109,4 +109,4 @@ class MainCommandResponse(_message.Message):
     _WhichOneofArgType__details: _TypeAlias = _typing.Literal["_details", b"_details"]  # noqa: Y015
     def WhichOneof(self, oneof_group: _WhichOneofArgType__details) -> _WhichOneofReturnType__details | None: ...
 
-Global___MainCommandResponse: _TypeAlias = MainCommandResponse  # noqa: Y015
+Global___RunconfCommandResponse: _TypeAlias = RunconfCommandResponse  # noqa: Y015
