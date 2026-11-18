@@ -15,5 +15,6 @@ message BootRequest {
   // do we need a log level?  
 
   Endpoint frontend_endpoint = 9;   // the endpoint of the frontend, so that the backend can send messages to it;
+  optional string config_file_name = 10;   // (remote only) default config file to load for the apparatus
 }
 

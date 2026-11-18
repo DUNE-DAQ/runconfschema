@@ -8,6 +8,7 @@ import "google/protobuf/any.proto";
 import "runconfschema/bootstrap.proto";
 import "runconfschema/common.proto";
 import "runconfschema/configuration_access.proto";
+import "runconfschema/display.proto";
 import "runconfschema/main_controls.proto";
 import "runconfschema/state.proto";
 
@@ -20,6 +21,8 @@ service RunconfService {
     rpc get_node_state(RequestNodeStatus) returns (ResponseNodeStatus) {}
     rpc set_node_state(RequestSetNodeValue) returns (ResponseNodeStatus) {}
     rpc reset_node_state(RequestReset) returns (ResponseNodeStatus) {}
+    // Display
+    rpc get_views(RequestViews) returns (DisplayViews) {}
     // General Operations
     rpc runconf_command(RunconfCommandRequest) returns (RunconfCommandResponse) {}
 }

@@ -5,6 +5,7 @@ import warnings
 
 from runconfschema import bootstrap_pb2 as runconfschema_dot_bootstrap__pb2
 from runconfschema import configuration_access_pb2 as runconfschema_dot_configuration__access__pb2
+from runconfschema import display_pb2 as runconfschema_dot_display__pb2
 from runconfschema import main_controls_pb2 as runconfschema_dot_main__controls__pb2
 from runconfschema import state_pb2 as runconfschema_dot_state__pb2
 
@@ -67,6 +68,11 @@ class RunconfServiceStub(object):
                 request_serializer=runconfschema_dot_state__pb2.RequestReset.SerializeToString,
                 response_deserializer=runconfschema_dot_state__pb2.ResponseNodeStatus.FromString,
                 _registered_method=True)
+        self.get_views = channel.unary_unary(
+                '/dunedaq.runconfschema.RunconfService/get_views',
+                request_serializer=runconfschema_dot_display__pb2.RequestViews.SerializeToString,
+                response_deserializer=runconfschema_dot_display__pb2.DisplayViews.FromString,
+                _registered_method=True)
         self.runconf_command = channel.unary_unary(
                 '/dunedaq.runconfschema.RunconfService/runconf_command',
                 request_serializer=runconfschema_dot_main__controls__pb2.RunconfCommandRequest.SerializeToString,
@@ -115,6 +121,13 @@ class RunconfServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def get_views(self, request, context):
+        """Display
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def runconf_command(self, request, context):
         """General Operations
         """
@@ -154,6 +167,11 @@ def add_RunconfServiceServicer_to_server(servicer, server):
                     servicer.reset_node_state,
                     request_deserializer=runconfschema_dot_state__pb2.RequestReset.FromString,
                     response_serializer=runconfschema_dot_state__pb2.ResponseNodeStatus.SerializeToString,
+            ),
+            'get_views': grpc.unary_unary_rpc_method_handler(
+                    servicer.get_views,
+                    request_deserializer=runconfschema_dot_display__pb2.RequestViews.FromString,
+                    response_serializer=runconfschema_dot_display__pb2.DisplayViews.SerializeToString,
             ),
             'runconf_command': grpc.unary_unary_rpc_method_handler(
                     servicer.runconf_command,
@@ -323,6 +341,33 @@ class RunconfService(object):
             '/dunedaq.runconfschema.RunconfService/reset_node_state',
             runconfschema_dot_state__pb2.RequestReset.SerializeToString,
             runconfschema_dot_state__pb2.ResponseNodeStatus.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def get_views(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/dunedaq.runconfschema.RunconfService/get_views',
+            runconfschema_dot_display__pb2.RequestViews.SerializeToString,
+            runconfschema_dot_display__pb2.DisplayViews.FromString,
             options,
             channel_credentials,
             insecure,

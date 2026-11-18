@@ -25,25 +25,25 @@ _sym_db = _symbol_database.Default()
 from runconfschema import common_pb2 as runconfschema_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19runconfschema/state.proto\x12\x15\x64unedaq.runconfschema\x1a\x1arunconfschema/common.proto\"\xa7\x02\n\x0eNodeStatusInfo\x12\x35\n\nnode_state\x18\x01 \x01(\x0e\x32!.dunedaq.runconfschema.NodeStatus\x12\x11\n\tnode_path\x18\x02 \x03(\t\x12\x17\n\nnode_value\x18\x03 \x01(\x01H\x00\x88\x01\x01\x12\x14\n\x07tooltip\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x39\n\nnode_group\x18\x05 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroupH\x02\x88\x01\x01\x12\x37\n\x08\x63hildren\x18\x06 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfoB\r\n\x0b_node_valueB\n\n\x08_tooltipB\r\n\x0b_node_group\"\xd5\x01\n\x13RequestSetNodeValue\x12\x34\n\nnode_group\x18\x01 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroup\x12\x0c\n\x04path\x18\x02 \x03(\t\x12\x16\n\x0c\x64ouble_value\x18\x03 \x01(\x01H\x00\x12\x14\n\nbool_value\x18\x04 \x01(\x08H\x00\x12>\n\x11node_status_value\x18\x05 \x01(\x0e\x32!.dunedaq.runconfschema.NodeStatusH\x00\x42\x0c\n\nnode_value\"W\n\x11RequestNodeStatus\x12\x34\n\nnode_group\x18\x01 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroup\x12\x0c\n\x04path\x18\x02 \x03(\t\"}\n\x12ResponseNodeStatus\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x34\n\x05nodes\x18\x02 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\"\x0e\n\x0cRequestReset*=\n\nNodeStatus\x12\x0c\n\x08INCLUDED\x10\x00\x12\x0c\n\x08\x45XCLUDED\x10\x01\x12\x13\n\x0fPARENT_EXCLUDED\x10\x02*(\n\tNodeGroup\x12\x0b\n\x07TOGGLES\x10\x00\x12\x0e\n\nADJUSTABLE\x10\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19runconfschema/state.proto\x12\x15\x64unedaq.runconfschema\x1a\x1arunconfschema/common.proto\"\xe9\x02\n\x0eNodeStatusInfo\x12\x35\n\nnode_state\x18\x01 \x01(\x0e\x32!.dunedaq.runconfschema.NodeStatus\x12\x11\n\tnode_path\x18\x02 \x03(\t\x12\x14\n\x07tooltip\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x39\n\nnode_group\x18\x05 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroupH\x02\x88\x01\x01\x12\x37\n\x08\x63hildren\x18\x06 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\x12\x16\n\x0c\x64ouble_value\x18\x07 \x01(\x01H\x00\x12\x13\n\tint_value\x18\x08 \x01(\x03H\x00\x12\x14\n\nbool_value\x18\t \x01(\x08H\x00\x12\x16\n\x0cstring_value\x18\n \x01(\tH\x00\x42\x07\n\x05valueB\n\n\x08_tooltipB\r\n\x0b_node_groupJ\x04\x08\x03\x10\x04\"\x82\x02\n\x13RequestSetNodeValue\x12\x34\n\nnode_group\x18\x01 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroup\x12\x0c\n\x04path\x18\x02 \x03(\t\x12\x16\n\x0c\x64ouble_value\x18\x03 \x01(\x01H\x00\x12\x14\n\nbool_value\x18\x04 \x01(\x08H\x00\x12>\n\x11node_status_value\x18\x05 \x01(\x0e\x32!.dunedaq.runconfschema.NodeStatusH\x00\x12\x13\n\tint_value\x18\x06 \x01(\x03H\x00\x12\x16\n\x0cstring_value\x18\x07 \x01(\tH\x00\x42\x0c\n\nnode_value\"W\n\x11RequestNodeStatus\x12\x34\n\nnode_group\x18\x01 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroup\x12\x0c\n\x04path\x18\x02 \x03(\t\"}\n\x12ResponseNodeStatus\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x34\n\x05nodes\x18\x02 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\"\x0e\n\x0cRequestReset*=\n\nNodeStatus\x12\x0c\n\x08INCLUDED\x10\x00\x12\x0c\n\x08\x45XCLUDED\x10\x01\x12\x13\n\x0fPARENT_EXCLUDED\x10\x02*(\n\tNodeGroup\x12\x0b\n\x07TOGGLES\x10\x00\x12\x0e\n\nADJUSTABLE\x10\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'runconfschema.state_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_NODESTATUS']._serialized_start=826
-  _globals['_NODESTATUS']._serialized_end=887
-  _globals['_NODEGROUP']._serialized_start=889
-  _globals['_NODEGROUP']._serialized_end=929
+  _globals['_NODESTATUS']._serialized_start=937
+  _globals['_NODESTATUS']._serialized_end=998
+  _globals['_NODEGROUP']._serialized_start=1000
+  _globals['_NODEGROUP']._serialized_end=1040
   _globals['_NODESTATUSINFO']._serialized_start=81
-  _globals['_NODESTATUSINFO']._serialized_end=376
-  _globals['_REQUESTSETNODEVALUE']._serialized_start=379
-  _globals['_REQUESTSETNODEVALUE']._serialized_end=592
-  _globals['_REQUESTNODESTATUS']._serialized_start=594
-  _globals['_REQUESTNODESTATUS']._serialized_end=681
-  _globals['_RESPONSENODESTATUS']._serialized_start=683
-  _globals['_RESPONSENODESTATUS']._serialized_end=808
-  _globals['_REQUESTRESET']._serialized_start=810
-  _globals['_REQUESTRESET']._serialized_end=824
+  _globals['_NODESTATUSINFO']._serialized_end=442
+  _globals['_REQUESTSETNODEVALUE']._serialized_start=445
+  _globals['_REQUESTSETNODEVALUE']._serialized_end=703
+  _globals['_REQUESTNODESTATUS']._serialized_start=705
+  _globals['_REQUESTNODESTATUS']._serialized_end=792
+  _globals['_RESPONSENODESTATUS']._serialized_start=794
+  _globals['_RESPONSENODESTATUS']._serialized_end=919
+  _globals['_REQUESTRESET']._serialized_start=921
+  _globals['_REQUESTRESET']._serialized_end=935
 # @@protoc_insertion_point(module_scope)

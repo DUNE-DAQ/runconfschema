@@ -64,21 +64,27 @@ class NodeStatusInfo(_message.Message):
 
     NODE_STATE_FIELD_NUMBER: _builtins.int
     NODE_PATH_FIELD_NUMBER: _builtins.int
-    NODE_VALUE_FIELD_NUMBER: _builtins.int
     TOOLTIP_FIELD_NUMBER: _builtins.int
     NODE_GROUP_FIELD_NUMBER: _builtins.int
     CHILDREN_FIELD_NUMBER: _builtins.int
+    DOUBLE_VALUE_FIELD_NUMBER: _builtins.int
+    INT_VALUE_FIELD_NUMBER: _builtins.int
+    BOOL_VALUE_FIELD_NUMBER: _builtins.int
+    STRING_VALUE_FIELD_NUMBER: _builtins.int
     node_state: Global___NodeStatus.ValueType
     """Is the node enabled/disabled/has its parent disabled?"""
-    node_value: _builtins.float
-    """Value of the node (directly asks the node so will not be a NodeStatus)"""
     tooltip: _builtins.str
     """Additional information to display if a GUI representing the node is hovered over"""
     node_group: Global___NodeGroup.ValueType
     """Group of the node (toggles or adjustable)"""
+    double_value: _builtins.float
+    int_value: _builtins.int
+    bool_value: _builtins.bool
+    """for toggles: true == included"""
+    string_value: _builtins.str
     @_builtins.property
     def node_path(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
-        """Path to the node in the tree"""
+        """Path to the node in the tree: [group_id, (parent,) label]"""
 
     @_builtins.property
     def children(self) -> _containers.RepeatedCompositeFieldContainer[Global___NodeStatusInfo]:
@@ -89,27 +95,30 @@ class NodeStatusInfo(_message.Message):
         *,
         node_state: Global___NodeStatus.ValueType = ...,
         node_path: _abc.Iterable[_builtins.str] | None = ...,
-        node_value: _builtins.float | None = ...,
         tooltip: _builtins.str | None = ...,
         node_group: Global___NodeGroup.ValueType | None = ...,
         children: _abc.Iterable[Global___NodeStatusInfo] | None = ...,
+        double_value: _builtins.float = ...,
+        int_value: _builtins.int = ...,
+        bool_value: _builtins.bool = ...,
+        string_value: _builtins.str = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["_node_group", b"_node_group", "_node_value", b"_node_value", "_tooltip", b"_tooltip", "node_group", b"node_group", "node_value", b"node_value", "tooltip", b"tooltip"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["_node_group", b"_node_group", "_tooltip", b"_tooltip", "bool_value", b"bool_value", "double_value", b"double_value", "int_value", b"int_value", "node_group", b"node_group", "string_value", b"string_value", "tooltip", b"tooltip", "value", b"value"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["_node_group", b"_node_group", "_node_value", b"_node_value", "_tooltip", b"_tooltip", "children", b"children", "node_group", b"node_group", "node_path", b"node_path", "node_state", b"node_state", "node_value", b"node_value", "tooltip", b"tooltip"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["_node_group", b"_node_group", "_tooltip", b"_tooltip", "bool_value", b"bool_value", "children", b"children", "double_value", b"double_value", "int_value", b"int_value", "node_group", b"node_group", "node_path", b"node_path", "node_state", b"node_state", "string_value", b"string_value", "tooltip", b"tooltip", "value", b"value"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     _WhichOneofReturnType__node_group: _TypeAlias = _typing.Literal["node_group"]  # noqa: Y015
     _WhichOneofArgType__node_group: _TypeAlias = _typing.Literal["_node_group", b"_node_group"]  # noqa: Y015
-    _WhichOneofReturnType__node_value: _TypeAlias = _typing.Literal["node_value"]  # noqa: Y015
-    _WhichOneofArgType__node_value: _TypeAlias = _typing.Literal["_node_value", b"_node_value"]  # noqa: Y015
     _WhichOneofReturnType__tooltip: _TypeAlias = _typing.Literal["tooltip"]  # noqa: Y015
     _WhichOneofArgType__tooltip: _TypeAlias = _typing.Literal["_tooltip", b"_tooltip"]  # noqa: Y015
+    _WhichOneofReturnType_value: _TypeAlias = _typing.Literal["double_value", "int_value", "bool_value", "string_value"]  # noqa: Y015
+    _WhichOneofArgType_value: _TypeAlias = _typing.Literal["value", b"value"]  # noqa: Y015
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__node_group) -> _WhichOneofReturnType__node_group | None: ...
     @_typing.overload
-    def WhichOneof(self, oneof_group: _WhichOneofArgType__node_value) -> _WhichOneofReturnType__node_value | None: ...
-    @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__tooltip) -> _WhichOneofReturnType__tooltip | None: ...
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_value) -> _WhichOneofReturnType_value | None: ...
 
 Global___NodeStatusInfo: _TypeAlias = NodeStatusInfo  # noqa: Y015
 
@@ -122,10 +131,15 @@ class RequestSetNodeValue(_message.Message):
     DOUBLE_VALUE_FIELD_NUMBER: _builtins.int
     BOOL_VALUE_FIELD_NUMBER: _builtins.int
     NODE_STATUS_VALUE_FIELD_NUMBER: _builtins.int
+    INT_VALUE_FIELD_NUMBER: _builtins.int
+    STRING_VALUE_FIELD_NUMBER: _builtins.int
     node_group: Global___NodeGroup.ValueType
     double_value: _builtins.float
     bool_value: _builtins.bool
     node_status_value: Global___NodeStatus.ValueType
+    int_value: _builtins.int
+    string_value: _builtins.str
+    """passed to the backend as-is (e.g. raw text from an input box)"""
     @_builtins.property
     def path(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Path to the node in the tree"""
@@ -138,12 +152,14 @@ class RequestSetNodeValue(_message.Message):
         double_value: _builtins.float = ...,
         bool_value: _builtins.bool = ...,
         node_status_value: Global___NodeStatus.ValueType = ...,
+        int_value: _builtins.int = ...,
+        string_value: _builtins.str = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["bool_value", b"bool_value", "double_value", b"double_value", "node_status_value", b"node_status_value", "node_value", b"node_value"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["bool_value", b"bool_value", "double_value", b"double_value", "int_value", b"int_value", "node_status_value", b"node_status_value", "node_value", b"node_value", "string_value", b"string_value"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["bool_value", b"bool_value", "double_value", b"double_value", "node_group", b"node_group", "node_status_value", b"node_status_value", "node_value", b"node_value", "path", b"path"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["bool_value", b"bool_value", "double_value", b"double_value", "int_value", b"int_value", "node_group", b"node_group", "node_status_value", b"node_status_value", "node_value", b"node_value", "path", b"path", "string_value", b"string_value"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    _WhichOneofReturnType_node_value: _TypeAlias = _typing.Literal["double_value", "bool_value", "node_status_value"]  # noqa: Y015
+    _WhichOneofReturnType_node_value: _TypeAlias = _typing.Literal["double_value", "bool_value", "node_status_value", "int_value", "string_value"]  # noqa: Y015
     _WhichOneofArgType_node_value: _TypeAlias = _typing.Literal["node_value", b"node_value"]  # noqa: Y015
     def WhichOneof(self, oneof_group: _WhichOneofArgType_node_value) -> _WhichOneofReturnType_node_value | None: ...
 

@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from runconfschema import common_pb2 as runconfschema_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1drunconfschema/bootstrap.proto\x12\x15\x64unedaq.runconfschema\x1a\x1arunconfschema/common.proto\"\xfe\x01\n\x0b\x42ootRequest\x12\x11\n\tapparatus\x18\x01 \x01(\t\x12\x14\n\x0cmanager_type\x18\x02 \x01(\t\x12\x16\n\x0e\x63onf_directory\x18\x03 \x01(\t\x12\x12\n\nsession_id\x18\x05 \x01(\t\x12\x18\n\x10output_directory\x18\x06 \x01(\t\x12\x15\n\x08\x62\x61se_url\x18\x07 \x01(\tH\x00\x88\x01\x01\x12\x14\n\x07ops_url\x18\x08 \x01(\tH\x01\x88\x01\x01\x12:\n\x11\x66rontend_endpoint\x18\t \x01(\x0b\x32\x1f.dunedaq.runconfschema.EndpointB\x0b\n\t_base_urlB\n\n\x08_ops_urlb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1drunconfschema/bootstrap.proto\x12\x15\x64unedaq.runconfschema\x1a\x1arunconfschema/common.proto\"\xb2\x02\n\x0b\x42ootRequest\x12\x11\n\tapparatus\x18\x01 \x01(\t\x12\x14\n\x0cmanager_type\x18\x02 \x01(\t\x12\x16\n\x0e\x63onf_directory\x18\x03 \x01(\t\x12\x12\n\nsession_id\x18\x05 \x01(\t\x12\x18\n\x10output_directory\x18\x06 \x01(\t\x12\x15\n\x08\x62\x61se_url\x18\x07 \x01(\tH\x00\x88\x01\x01\x12\x14\n\x07ops_url\x18\x08 \x01(\tH\x01\x88\x01\x01\x12:\n\x11\x66rontend_endpoint\x18\t \x01(\x0b\x32\x1f.dunedaq.runconfschema.Endpoint\x12\x1d\n\x10\x63onfig_file_name\x18\n \x01(\tH\x02\x88\x01\x01\x42\x0b\n\t_base_urlB\n\n\x08_ops_urlB\x13\n\x11_config_file_nameb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,5 +33,5 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'runconfschema.bootstrap_pb2
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_BOOTREQUEST']._serialized_start=85
-  _globals['_BOOTREQUEST']._serialized_end=339
+  _globals['_BOOTREQUEST']._serialized_end=391
 # @@protoc_insertion_point(module_scope)

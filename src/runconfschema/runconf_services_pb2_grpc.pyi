@@ -7,6 +7,7 @@ from collections import abc as _abc
 from grpc import aio as _aio
 from runconfschema import bootstrap_pb2 as _bootstrap_pb2
 from runconfschema import configuration_access_pb2 as _configuration_access_pb2
+from runconfschema import display_pb2 as _display_pb2
 from runconfschema import main_controls_pb2 as _main_controls_pb2
 from runconfschema import state_pb2 as _state_pb2
 import abc as _abc_1
@@ -42,6 +43,8 @@ class RunconfServiceStub:
     """State handling"""
     set_node_state: _grpc.UnaryUnaryMultiCallable[_state_pb2.RequestSetNodeValue, _state_pb2.ResponseNodeStatus]
     reset_node_state: _grpc.UnaryUnaryMultiCallable[_state_pb2.RequestReset, _state_pb2.ResponseNodeStatus]
+    get_views: _grpc.UnaryUnaryMultiCallable[_display_pb2.RequestViews, _display_pb2.DisplayViews]
+    """Display"""
     runconf_command: _grpc.UnaryUnaryMultiCallable[_main_controls_pb2.RunconfCommandRequest, _main_controls_pb2.RunconfCommandResponse]
     """General Operations"""
 
@@ -56,6 +59,8 @@ class RunconfServiceAsyncStub(RunconfServiceStub):
     """State handling"""
     set_node_state: _aio.UnaryUnaryMultiCallable[_state_pb2.RequestSetNodeValue, _state_pb2.ResponseNodeStatus]  # type: ignore[assignment]
     reset_node_state: _aio.UnaryUnaryMultiCallable[_state_pb2.RequestReset, _state_pb2.ResponseNodeStatus]  # type: ignore[assignment]
+    get_views: _aio.UnaryUnaryMultiCallable[_display_pb2.RequestViews, _display_pb2.DisplayViews]  # type: ignore[assignment]
+    """Display"""
     runconf_command: _aio.UnaryUnaryMultiCallable[_main_controls_pb2.RunconfCommandRequest, _main_controls_pb2.RunconfCommandResponse]  # type: ignore[assignment]
     """General Operations"""
 
@@ -103,6 +108,14 @@ class RunconfServiceServicer(metaclass=_abc_1.ABCMeta):
         request: _state_pb2.RequestReset,
         context: _ServicerContext,
     ) -> _typing.Union[_state_pb2.ResponseNodeStatus, _abc.Awaitable[_state_pb2.ResponseNodeStatus]]: ...
+
+    @_abc_1.abstractmethod
+    def get_views(
+        self,
+        request: _display_pb2.RequestViews,
+        context: _ServicerContext,
+    ) -> _typing.Union[_display_pb2.DisplayViews, _abc.Awaitable[_display_pb2.DisplayViews]]:
+        """Display"""
 
     @_abc_1.abstractmethod
     def runconf_command(

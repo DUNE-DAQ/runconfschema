@@ -216,16 +216,22 @@ class ConfigurationOutcome(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
     RESPONSE_FIELD_NUMBER: _builtins.int
+    CONFIG_TREES_FIELD_NUMBER: _builtins.int
     @_builtins.property
     def response(self) -> _common_pb2.Response: ...
+    @_builtins.property
+    def config_trees(self) -> _containers.RepeatedCompositeFieldContainer[_state_pb2.NodeStatusInfo]:
+        """one root per node group, populated on success"""
+
     def __init__(
         self,
         *,
         response: _common_pb2.Response | None = ...,
+        config_trees: _abc.Iterable[_state_pb2.NodeStatusInfo] | None = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _typing.Literal["response", b"response"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["response", b"response"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["config_trees", b"config_trees", "response", b"response"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 

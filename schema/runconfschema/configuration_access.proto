@@ -45,6 +45,7 @@ message DropDownUpdate {
 // Response to Open
 message ConfigurationOutcome {
     Response response = 1;
+    repeated NodeStatusInfo config_trees = 5;   // one root per node group, populated on success
 }
 
 // ------------

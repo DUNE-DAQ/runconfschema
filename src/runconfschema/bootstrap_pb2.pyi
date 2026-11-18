@@ -29,6 +29,7 @@ class BootRequest(_message.Message):
     BASE_URL_FIELD_NUMBER: _builtins.int
     OPS_URL_FIELD_NUMBER: _builtins.int
     FRONTEND_ENDPOINT_FIELD_NUMBER: _builtins.int
+    CONFIG_FILE_NAME_FIELD_NUMBER: _builtins.int
     apparatus: _builtins.str
     manager_type: _builtins.str
     """check with James if this should be an enum;"""
@@ -39,6 +40,8 @@ class BootRequest(_message.Message):
     """how can we generalise the URLs?"""
     ops_url: _builtins.str
     """do we need a log level?"""
+    config_file_name: _builtins.str
+    """(remote only) default config file to load for the apparatus"""
     @_builtins.property
     def frontend_endpoint(self) -> _common_pb2.Endpoint:
         """the endpoint of the frontend, so that the backend can send messages to it;"""
@@ -54,17 +57,22 @@ class BootRequest(_message.Message):
         base_url: _builtins.str | None = ...,
         ops_url: _builtins.str | None = ...,
         frontend_endpoint: _common_pb2.Endpoint | None = ...,
+        config_file_name: _builtins.str | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["_base_url", b"_base_url", "_ops_url", b"_ops_url", "base_url", b"base_url", "frontend_endpoint", b"frontend_endpoint", "ops_url", b"ops_url"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["_base_url", b"_base_url", "_config_file_name", b"_config_file_name", "_ops_url", b"_ops_url", "base_url", b"base_url", "config_file_name", b"config_file_name", "frontend_endpoint", b"frontend_endpoint", "ops_url", b"ops_url"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["_base_url", b"_base_url", "_ops_url", b"_ops_url", "apparatus", b"apparatus", "base_url", b"base_url", "conf_directory", b"conf_directory", "frontend_endpoint", b"frontend_endpoint", "manager_type", b"manager_type", "ops_url", b"ops_url", "output_directory", b"output_directory", "session_id", b"session_id"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["_base_url", b"_base_url", "_config_file_name", b"_config_file_name", "_ops_url", b"_ops_url", "apparatus", b"apparatus", "base_url", b"base_url", "conf_directory", b"conf_directory", "config_file_name", b"config_file_name", "frontend_endpoint", b"frontend_endpoint", "manager_type", b"manager_type", "ops_url", b"ops_url", "output_directory", b"output_directory", "session_id", b"session_id"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     _WhichOneofReturnType__base_url: _TypeAlias = _typing.Literal["base_url"]  # noqa: Y015
     _WhichOneofArgType__base_url: _TypeAlias = _typing.Literal["_base_url", b"_base_url"]  # noqa: Y015
+    _WhichOneofReturnType__config_file_name: _TypeAlias = _typing.Literal["config_file_name"]  # noqa: Y015
+    _WhichOneofArgType__config_file_name: _TypeAlias = _typing.Literal["_config_file_name", b"_config_file_name"]  # noqa: Y015
     _WhichOneofReturnType__ops_url: _TypeAlias = _typing.Literal["ops_url"]  # noqa: Y015
     _WhichOneofArgType__ops_url: _TypeAlias = _typing.Literal["_ops_url", b"_ops_url"]  # noqa: Y015
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__base_url) -> _WhichOneofReturnType__base_url | None: ...
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__config_file_name) -> _WhichOneofReturnType__config_file_name | None: ...
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__ops_url) -> _WhichOneofReturnType__ops_url | None: ...
 

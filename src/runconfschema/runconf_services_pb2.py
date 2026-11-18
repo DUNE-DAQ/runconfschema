@@ -26,17 +26,18 @@ from google.protobuf import any_pb2 as google_dot_protobuf_dot_any__pb2
 from runconfschema import bootstrap_pb2 as runconfschema_dot_bootstrap__pb2
 from runconfschema import common_pb2 as runconfschema_dot_common__pb2
 from runconfschema import configuration_access_pb2 as runconfschema_dot_configuration__access__pb2
+from runconfschema import display_pb2 as runconfschema_dot_display__pb2
 from runconfschema import main_controls_pb2 as runconfschema_dot_main__controls__pb2
 from runconfschema import state_pb2 as runconfschema_dot_state__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$runconfschema/runconf_services.proto\x12\x15\x64unedaq.runconfschema\x1a\x19google/protobuf/any.proto\x1a\x1drunconfschema/bootstrap.proto\x1a\x1arunconfschema/common.proto\x1a(runconfschema/configuration_access.proto\x1a!runconfschema/main_controls.proto\x1a\x19runconfschema/state.proto2\xd9\x05\n\x0eRunconfService\x12S\n\x04\x62oot\x12\".dunedaq.runconfschema.BootRequest\x1a%.dunedaq.runconfschema.Initialisation\"\x00\x12\x64\n\x0fselect_dropdown\x12(.dunedaq.runconfschema.DropDownSelection\x1a%.dunedaq.runconfschema.DropDownUpdate\"\x00\x12`\n\x12open_configuration\x12\x1b.dunedaq.runconfschema.Open\x1a+.dunedaq.runconfschema.ConfigurationOutcome\"\x00\x12g\n\x0eget_node_state\x12(.dunedaq.runconfschema.RequestNodeStatus\x1a).dunedaq.runconfschema.ResponseNodeStatus\"\x00\x12i\n\x0eset_node_state\x12*.dunedaq.runconfschema.RequestSetNodeValue\x1a).dunedaq.runconfschema.ResponseNodeStatus\"\x00\x12\x64\n\x10reset_node_state\x12#.dunedaq.runconfschema.RequestReset\x1a).dunedaq.runconfschema.ResponseNodeStatus\"\x00\x12p\n\x0frunconf_command\x12,.dunedaq.runconfschema.RunconfCommandRequest\x1a-.dunedaq.runconfschema.RunconfCommandResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$runconfschema/runconf_services.proto\x12\x15\x64unedaq.runconfschema\x1a\x19google/protobuf/any.proto\x1a\x1drunconfschema/bootstrap.proto\x1a\x1arunconfschema/common.proto\x1a(runconfschema/configuration_access.proto\x1a\x1brunconfschema/display.proto\x1a!runconfschema/main_controls.proto\x1a\x19runconfschema/state.proto2\xb2\x06\n\x0eRunconfService\x12S\n\x04\x62oot\x12\".dunedaq.runconfschema.BootRequest\x1a%.dunedaq.runconfschema.Initialisation\"\x00\x12\x64\n\x0fselect_dropdown\x12(.dunedaq.runconfschema.DropDownSelection\x1a%.dunedaq.runconfschema.DropDownUpdate\"\x00\x12`\n\x12open_configuration\x12\x1b.dunedaq.runconfschema.Open\x1a+.dunedaq.runconfschema.ConfigurationOutcome\"\x00\x12g\n\x0eget_node_state\x12(.dunedaq.runconfschema.RequestNodeStatus\x1a).dunedaq.runconfschema.ResponseNodeStatus\"\x00\x12i\n\x0eset_node_state\x12*.dunedaq.runconfschema.RequestSetNodeValue\x1a).dunedaq.runconfschema.ResponseNodeStatus\"\x00\x12\x64\n\x10reset_node_state\x12#.dunedaq.runconfschema.RequestReset\x1a).dunedaq.runconfschema.ResponseNodeStatus\"\x00\x12W\n\tget_views\x12#.dunedaq.runconfschema.RequestViews\x1a#.dunedaq.runconfschema.DisplayViews\"\x00\x12p\n\x0frunconf_command\x12,.dunedaq.runconfschema.RunconfCommandRequest\x1a-.dunedaq.runconfschema.RunconfCommandResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'runconfschema.runconf_services_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_RUNCONFSERVICE']._serialized_start=254
-  _globals['_RUNCONFSERVICE']._serialized_end=983
+  _globals['_RUNCONFSERVICE']._serialized_start=283
+  _globals['_RUNCONFSERVICE']._serialized_end=1101
 # @@protoc_insertion_point(module_scope)

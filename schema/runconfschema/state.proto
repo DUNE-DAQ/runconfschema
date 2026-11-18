@@ -21,12 +21,18 @@ enum NodeGroup {
 
 // // Info about the node
 message NodeStatusInfo {
+  reserved 3; // was: optional double node_value (replaced by the typed oneof below)
   NodeStatus node_state = 1;  // Is the node enabled/disabled/has its parent disabled?
-  repeated string node_path = 2; // Path to the node in the tree
-  optional double node_value = 3; // Value of the node (directly asks the node so will not be a NodeStatus)
+  repeated string node_path = 2; // Path to the node in the tree: [group_id, (parent,) label]
   optional string tooltip = 4; // Additional information to display if a GUI representing the node is hovered over
   optional NodeGroup node_group = 5; // Group of the node (toggles or adjustable)
   repeated NodeStatusInfo children = 6; // Children of the node (note: This does not need to be sent unless we're building a tree, but it is included here for completeness)
+  oneof value { // Current value of the node, in its native type. Unset if the node has no value.
+    double double_value = 7;
+    int64 int_value = 8;
+    bool bool_value = 9;  // for toggles: true == included
+    string string_value = 10;
+  }
 }
 
 message RequestSetNodeValue {
@@ -36,6 +42,8 @@ message RequestSetNodeValue {
     double double_value = 3;
     bool bool_value = 4;
     NodeStatus node_status_value = 5;
+    int64 int_value = 6;
+    string string_value = 7; // passed to the backend as-is (e.g. raw text from an input box)
   }
 }
 
