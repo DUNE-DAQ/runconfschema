@@ -42,6 +42,11 @@ class RunconfServiceStub(object):
                 request_serializer=runconfschema_dot_bootstrap__pb2.BootRequest.SerializeToString,
                 response_deserializer=runconfschema_dot_configuration__access__pb2.Initialisation.FromString,
                 _registered_method=True)
+        self.initialise = channel.unary_unary(
+                '/dunedaq.runconfschema.RunconfService/initialise',
+                request_serializer=runconfschema_dot_configuration__access__pb2.RequestInitialisation.SerializeToString,
+                response_deserializer=runconfschema_dot_configuration__access__pb2.Initialisation.FromString,
+                _registered_method=True)
         self.select_dropdown = channel.unary_unary(
                 '/dunedaq.runconfschema.RunconfService/select_dropdown',
                 request_serializer=runconfschema_dot_configuration__access__pb2.DropDownSelection.SerializeToString,
@@ -88,7 +93,16 @@ class RunconfServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def boot(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Called once, by whoever starts the server, with the context every frontend shares.
+        Fails with ALREADY_EXISTS if the server has already been booted.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def initialise(self, request, context):
+        """Called by each frontend on connect: the current state of a booted server.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -150,6 +164,11 @@ def add_RunconfServiceServicer_to_server(servicer, server):
             'boot': grpc.unary_unary_rpc_method_handler(
                     servicer.boot,
                     request_deserializer=runconfschema_dot_bootstrap__pb2.BootRequest.FromString,
+                    response_serializer=runconfschema_dot_configuration__access__pb2.Initialisation.SerializeToString,
+            ),
+            'initialise': grpc.unary_unary_rpc_method_handler(
+                    servicer.initialise,
+                    request_deserializer=runconfschema_dot_configuration__access__pb2.RequestInitialisation.FromString,
                     response_serializer=runconfschema_dot_configuration__access__pb2.Initialisation.SerializeToString,
             ),
             'select_dropdown': grpc.unary_unary_rpc_method_handler(
@@ -219,6 +238,33 @@ class RunconfService(object):
             target,
             '/dunedaq.runconfschema.RunconfService/boot',
             runconfschema_dot_bootstrap__pb2.BootRequest.SerializeToString,
+            runconfschema_dot_configuration__access__pb2.Initialisation.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def initialise(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/dunedaq.runconfschema.RunconfService/initialise',
+            runconfschema_dot_configuration__access__pb2.RequestInitialisation.SerializeToString,
             runconfschema_dot_configuration__access__pb2.Initialisation.FromString,
             options,
             channel_credentials,

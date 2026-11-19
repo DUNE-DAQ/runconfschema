@@ -420,3 +420,20 @@ class RequestConfigurationInfo(_message.Message):
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
 Global___RequestConfigurationInfo: _TypeAlias = RequestConfigurationInfo  # noqa: Y015
+
+@_typing.final
+class RequestInitialisation(_message.Message):
+    """Sent by a frontend when it connects to an already-booted server"""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___RequestInitialisation: _TypeAlias = RequestInitialisation  # noqa: Y015

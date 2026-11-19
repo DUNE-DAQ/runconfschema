@@ -35,6 +35,11 @@ class RunconfServiceStub:
     @_typing.overload
     def __new__(cls, channel: _aio.Channel) -> RunconfServiceAsyncStub: ...
     boot: _grpc.UnaryUnaryMultiCallable[_bootstrap_pb2.BootRequest, _configuration_access_pb2.Initialisation]
+    """Called once, by whoever starts the server, with the context every frontend shares.
+    Fails with ALREADY_EXISTS if the server has already been booted.
+    """
+    initialise: _grpc.UnaryUnaryMultiCallable[_configuration_access_pb2.RequestInitialisation, _configuration_access_pb2.Initialisation]
+    """Called by each frontend on connect: the current state of a booted server."""
     select_dropdown: _grpc.UnaryUnaryMultiCallable[_configuration_access_pb2.DropDownSelection, _configuration_access_pb2.DropDownUpdate]
     """Dropdowns and config opening"""
     open_configuration: _grpc.UnaryUnaryMultiCallable[_configuration_access_pb2.Open, _configuration_access_pb2.ConfigurationOutcome]
@@ -51,6 +56,11 @@ class RunconfServiceStub:
 class RunconfServiceAsyncStub(RunconfServiceStub):
     def __init__(self, channel: _aio.Channel) -> None: ...
     boot: _aio.UnaryUnaryMultiCallable[_bootstrap_pb2.BootRequest, _configuration_access_pb2.Initialisation]  # type: ignore[assignment]
+    """Called once, by whoever starts the server, with the context every frontend shares.
+    Fails with ALREADY_EXISTS if the server has already been booted.
+    """
+    initialise: _aio.UnaryUnaryMultiCallable[_configuration_access_pb2.RequestInitialisation, _configuration_access_pb2.Initialisation]  # type: ignore[assignment]
+    """Called by each frontend on connect: the current state of a booted server."""
     select_dropdown: _aio.UnaryUnaryMultiCallable[_configuration_access_pb2.DropDownSelection, _configuration_access_pb2.DropDownUpdate]  # type: ignore[assignment]
     """Dropdowns and config opening"""
     open_configuration: _aio.UnaryUnaryMultiCallable[_configuration_access_pb2.Open, _configuration_access_pb2.ConfigurationOutcome]  # type: ignore[assignment]
@@ -69,7 +79,18 @@ class RunconfServiceServicer(metaclass=_abc_1.ABCMeta):
         self,
         request: _bootstrap_pb2.BootRequest,
         context: _ServicerContext,
-    ) -> _typing.Union[_configuration_access_pb2.Initialisation, _abc.Awaitable[_configuration_access_pb2.Initialisation]]: ...
+    ) -> _typing.Union[_configuration_access_pb2.Initialisation, _abc.Awaitable[_configuration_access_pb2.Initialisation]]:
+        """Called once, by whoever starts the server, with the context every frontend shares.
+        Fails with ALREADY_EXISTS if the server has already been booted.
+        """
+
+    @_abc_1.abstractmethod
+    def initialise(
+        self,
+        request: _configuration_access_pb2.RequestInitialisation,
+        context: _ServicerContext,
+    ) -> _typing.Union[_configuration_access_pb2.Initialisation, _abc.Awaitable[_configuration_access_pb2.Initialisation]]:
+        """Called by each frontend on connect: the current state of a booted server."""
 
     @_abc_1.abstractmethod
     def select_dropdown(

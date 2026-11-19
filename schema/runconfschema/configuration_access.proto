@@ -83,6 +83,9 @@ message Open {
 }
 
 message RequestConfigurationInfo {}
+
+// Sent by a frontend when it connects to an already-booted server
+message RequestInitialisation {}
     
 
 // sequence

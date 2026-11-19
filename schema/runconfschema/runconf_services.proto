@@ -12,7 +12,11 @@ import "runconfschema/main_controls.proto";
 import "runconfschema/state.proto";
 
 service RunconfService {
+    // Called once, by whoever starts the server, with the context every frontend shares.
+    // Fails with ALREADY_EXISTS if the server has already been booted.
     rpc boot (BootRequest) returns (Initialisation) {}
+    // Called by each frontend on connect: the current state of a booted server.
+    rpc initialise(RequestInitialisation) returns (Initialisation) {}
     // Dropdowns and config opening
     rpc select_dropdown(DropDownSelection) returns (DropDownUpdate) {}
     rpc open_configuration(Open) returns (ConfigurationOutcome) {}
