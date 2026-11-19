@@ -216,26 +216,122 @@ class ConfigurationOutcome(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
     RESPONSE_FIELD_NUMBER: _builtins.int
-    CONFIG_TREES_FIELD_NUMBER: _builtins.int
+    GROUPS_FIELD_NUMBER: _builtins.int
     @_builtins.property
     def response(self) -> _common_pb2.Response: ...
     @_builtins.property
-    def config_trees(self) -> _containers.RepeatedCompositeFieldContainer[_state_pb2.NodeStatusInfo]:
-        """one root per node group, populated on success"""
+    def groups(self) -> _containers.RepeatedCompositeFieldContainer[_state_pb2.GroupNodes]:
+        """full node state, populated on success"""
 
     def __init__(
         self,
         *,
         response: _common_pb2.Response | None = ...,
-        config_trees: _abc.Iterable[_state_pb2.NodeStatusInfo] | None = ...,
+        groups: _abc.Iterable[_state_pb2.GroupNodes] | None = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _typing.Literal["response", b"response"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["config_trees", b"config_trees", "response", b"response"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["groups", b"groups", "response", b"response"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
 Global___ConfigurationOutcome: _TypeAlias = ConfigurationOutcome  # noqa: Y015
+
+@_typing.final
+class ConfigTreeNode(_message.Message):
+    """An entry in the configuration (DAL object) tree"""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    LABEL_FIELD_NUMBER: _builtins.int
+    STATE_FIELD_NUMBER: _builtins.int
+    CHILDREN_FIELD_NUMBER: _builtins.int
+    label: _builtins.str
+    """object: "uid@Class"; relationship: its name"""
+    state: _state_pb2.NodeStatus.ValueType
+    """set for objects, unset for relationship entries"""
+    @_builtins.property
+    def children(self) -> _containers.RepeatedCompositeFieldContainer[Global___ConfigTreeNode]: ...
+    def __init__(
+        self,
+        *,
+        label: _builtins.str = ...,
+        state: _state_pb2.NodeStatus.ValueType | None = ...,
+        children: _abc.Iterable[Global___ConfigTreeNode] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["_state", b"_state", "state", b"state"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["_state", b"_state", "children", b"children", "label", b"label", "state", b"state"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    _WhichOneofReturnType__state: _TypeAlias = _typing.Literal["state"]  # noqa: Y015
+    _WhichOneofArgType__state: _TypeAlias = _typing.Literal["_state", b"_state"]  # noqa: Y015
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__state) -> _WhichOneofReturnType__state | None: ...
+
+Global___ConfigTreeNode: _TypeAlias = ConfigTreeNode  # noqa: Y015
+
+@_typing.final
+class ConfigurationInfo(_message.Message):
+    """Summary of the loaded configuration"""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    RESPONSE_FIELD_NUMBER: _builtins.int
+    CONFIG_OPEN_FIELD_NUMBER: _builtins.int
+    APPARATUS_FIELD_NUMBER: _builtins.int
+    DAQ_VERSION_FIELD_NUMBER: _builtins.int
+    CONFIG_FILE_FIELD_NUMBER: _builtins.int
+    CURRENT_FILE_FIELD_NUMBER: _builtins.int
+    SESSION_NAME_FIELD_NUMBER: _builtins.int
+    CONFIG_TREE_FIELD_NUMBER: _builtins.int
+    config_open: _builtins.bool
+    apparatus: _builtins.str
+    daq_version: _builtins.str
+    config_file: _builtins.str
+    """configuration the session was loaded from"""
+    current_file: _builtins.str
+    """working copy being edited"""
+    session_name: _builtins.str
+    """id of the Session object (the root of config_tree)"""
+    @_builtins.property
+    def response(self) -> _common_pb2.Response: ...
+    @_builtins.property
+    def config_tree(self) -> _containers.RepeatedCompositeFieldContainer[Global___ConfigTreeNode]:
+        """entries below the session"""
+
+    def __init__(
+        self,
+        *,
+        response: _common_pb2.Response | None = ...,
+        config_open: _builtins.bool = ...,
+        apparatus: _builtins.str = ...,
+        daq_version: _builtins.str | None = ...,
+        config_file: _builtins.str | None = ...,
+        current_file: _builtins.str | None = ...,
+        session_name: _builtins.str | None = ...,
+        config_tree: _abc.Iterable[Global___ConfigTreeNode] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["_config_file", b"_config_file", "_current_file", b"_current_file", "_daq_version", b"_daq_version", "_session_name", b"_session_name", "config_file", b"config_file", "current_file", b"current_file", "daq_version", b"daq_version", "response", b"response", "session_name", b"session_name"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["_config_file", b"_config_file", "_current_file", b"_current_file", "_daq_version", b"_daq_version", "_session_name", b"_session_name", "apparatus", b"apparatus", "config_file", b"config_file", "config_open", b"config_open", "config_tree", b"config_tree", "current_file", b"current_file", "daq_version", b"daq_version", "response", b"response", "session_name", b"session_name"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    _WhichOneofReturnType__config_file: _TypeAlias = _typing.Literal["config_file"]  # noqa: Y015
+    _WhichOneofArgType__config_file: _TypeAlias = _typing.Literal["_config_file", b"_config_file"]  # noqa: Y015
+    _WhichOneofReturnType__current_file: _TypeAlias = _typing.Literal["current_file"]  # noqa: Y015
+    _WhichOneofArgType__current_file: _TypeAlias = _typing.Literal["_current_file", b"_current_file"]  # noqa: Y015
+    _WhichOneofReturnType__daq_version: _TypeAlias = _typing.Literal["daq_version"]  # noqa: Y015
+    _WhichOneofArgType__daq_version: _TypeAlias = _typing.Literal["_daq_version", b"_daq_version"]  # noqa: Y015
+    _WhichOneofReturnType__session_name: _TypeAlias = _typing.Literal["session_name"]  # noqa: Y015
+    _WhichOneofArgType__session_name: _TypeAlias = _typing.Literal["_session_name", b"_session_name"]  # noqa: Y015
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__config_file) -> _WhichOneofReturnType__config_file | None: ...
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__current_file) -> _WhichOneofReturnType__current_file | None: ...
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__daq_version) -> _WhichOneofReturnType__daq_version | None: ...
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__session_name) -> _WhichOneofReturnType__session_name | None: ...
+
+Global___ConfigurationInfo: _TypeAlias = ConfigurationInfo  # noqa: Y015
 
 @_typing.final
 class DropDownSelection(_message.Message):
@@ -309,3 +405,18 @@ class Open(_message.Message):
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
 Global___Open: _TypeAlias = Open  # noqa: Y015
+
+@_typing.final
+class RequestConfigurationInfo(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___RequestConfigurationInfo: _TypeAlias = RequestConfigurationInfo  # noqa: Y015

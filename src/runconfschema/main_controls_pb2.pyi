@@ -87,9 +87,9 @@ class RunconfCommandResponse(_message.Message):
     def details(self) -> _any_pb2.Any:
         """
         Quit: Details is empty
-        Create Quit: Path to newly created configuration
-        Reset: Full state of the runconf-ui tree as nested LabelledNodes
-        Help: Help message?
+        Create Quit: google.protobuf.StringValue with the path to the saved configuration
+        Reset: ConfigurationOutcome whose groups hold the full reset state
+        Help: google.protobuf.StringValue with the help text
 
         Info to display
         """

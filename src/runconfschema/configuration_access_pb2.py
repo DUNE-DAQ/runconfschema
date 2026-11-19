@@ -26,7 +26,7 @@ from runconfschema import common_pb2 as runconfschema_dot_common__pb2
 from runconfschema import state_pb2 as runconfschema_dot_state__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n(runconfschema/configuration_access.proto\x12\x15\x64unedaq.runconfschema\x1a\x1arunconfschema/common.proto\x1a\x19runconfschema/state.proto\"!\n\x0f\x44ropDownContent\x12\x0e\n\x06values\x18\x01 \x03(\t\"\x99\x04\n\x0eInitialisation\x12\x17\n\x0frunconf_version\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x61q_version\x18\x02 \x01(\t\x12\x11\n\tapparatus\x18\x03 \x01(\t\x12G\n\tstructure\x18\x04 \x03(\x0b\x32\x34.dunedaq.runconfschema.Initialisation.StructureEntry\x12G\n\tdropdowns\x18\x05 \x03(\x0b\x32\x34.dunedaq.runconfschema.Initialisation.DropdownsEntry\x12\x1c\n\x0f\x61\x64\x64itional_info\x18\x06 \x01(\tH\x00\x88\x01\x01\x12\x39\n\x10\x62\x61\x63kend_endpoint\x18\x07 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Endpoint\x12;\n\x0c\x63onfig_trees\x18\x08 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\x1a\x30\n\x0eStructureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1aX\n\x0e\x44ropdownsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.dunedaq.runconfschema.DropDownContent:\x02\x38\x01\x42\x12\n\x10_additional_info\"\xed\x01\n\x0e\x44ropDownUpdate\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x41\n\x06update\x18\x02 \x03(\x0b\x32\x31.dunedaq.runconfschema.DropDownUpdate.UpdateEntry\x12\x0e\n\x06resets\x18\x03 \x03(\t\x1aU\n\x0bUpdateEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.dunedaq.runconfschema.DropDownContent:\x02\x38\x01\"\x86\x01\n\x14\x43onfigurationOutcome\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12;\n\x0c\x63onfig_trees\x18\x05 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\"/\n\x11\x44ropDownSelection\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"w\n\x04Open\x12=\n\tselection\x18\x01 \x03(\x0b\x32*.dunedaq.runconfschema.Open.SelectionEntry\x1a\x30\n\x0eSelectionEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n(runconfschema/configuration_access.proto\x12\x15\x64unedaq.runconfschema\x1a\x1arunconfschema/common.proto\x1a\x19runconfschema/state.proto\"!\n\x0f\x44ropDownContent\x12\x0e\n\x06values\x18\x01 \x03(\t\"\x99\x04\n\x0eInitialisation\x12\x17\n\x0frunconf_version\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x61q_version\x18\x02 \x01(\t\x12\x11\n\tapparatus\x18\x03 \x01(\t\x12G\n\tstructure\x18\x04 \x03(\x0b\x32\x34.dunedaq.runconfschema.Initialisation.StructureEntry\x12G\n\tdropdowns\x18\x05 \x03(\x0b\x32\x34.dunedaq.runconfschema.Initialisation.DropdownsEntry\x12\x1c\n\x0f\x61\x64\x64itional_info\x18\x06 \x01(\tH\x00\x88\x01\x01\x12\x39\n\x10\x62\x61\x63kend_endpoint\x18\x07 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Endpoint\x12;\n\x0c\x63onfig_trees\x18\x08 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\x1a\x30\n\x0eStructureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1aX\n\x0e\x44ropdownsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.dunedaq.runconfschema.DropDownContent:\x02\x38\x01\x42\x12\n\x10_additional_info\"\xed\x01\n\x0e\x44ropDownUpdate\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x41\n\x06update\x18\x02 \x03(\x0b\x32\x31.dunedaq.runconfschema.DropDownUpdate.UpdateEntry\x12\x0e\n\x06resets\x18\x03 \x03(\t\x1aU\n\x0bUpdateEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.dunedaq.runconfschema.DropDownContent:\x02\x38\x01\"|\n\x14\x43onfigurationOutcome\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x31\n\x06groups\x18\x05 \x03(\x0b\x32!.dunedaq.runconfschema.GroupNodes\"\x99\x01\n\x0e\x43onfigTreeNode\x12\r\n\x05label\x18\x01 \x01(\t\x12\x35\n\x05state\x18\x02 \x01(\x0e\x32!.dunedaq.runconfschema.NodeStatusH\x00\x88\x01\x01\x12\x37\n\x08\x63hildren\x18\x03 \x03(\x0b\x32%.dunedaq.runconfschema.ConfigTreeNodeB\x08\n\x06_state\"\xd6\x02\n\x11\x43onfigurationInfo\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x13\n\x0b\x63onfig_open\x18\x02 \x01(\x08\x12\x11\n\tapparatus\x18\x03 \x01(\t\x12\x18\n\x0b\x64\x61q_version\x18\x04 \x01(\tH\x00\x88\x01\x01\x12\x18\n\x0b\x63onfig_file\x18\x05 \x01(\tH\x01\x88\x01\x01\x12\x19\n\x0c\x63urrent_file\x18\x06 \x01(\tH\x02\x88\x01\x01\x12\x19\n\x0csession_name\x18\x07 \x01(\tH\x03\x88\x01\x01\x12:\n\x0b\x63onfig_tree\x18\x08 \x03(\x0b\x32%.dunedaq.runconfschema.ConfigTreeNodeB\x0e\n\x0c_daq_versionB\x0e\n\x0c_config_fileB\x0f\n\r_current_fileB\x0f\n\r_session_name\"/\n\x11\x44ropDownSelection\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"w\n\x04Open\x12=\n\tselection\x18\x01 \x03(\x0b\x32*.dunedaq.runconfschema.Open.SelectionEntry\x1a\x30\n\x0eSelectionEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x1a\n\x18RequestConfigurationInfob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -53,12 +53,18 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_DROPDOWNUPDATE']._serialized_end=935
   _globals['_DROPDOWNUPDATE_UPDATEENTRY']._serialized_start=850
   _globals['_DROPDOWNUPDATE_UPDATEENTRY']._serialized_end=935
-  _globals['_CONFIGURATIONOUTCOME']._serialized_start=938
-  _globals['_CONFIGURATIONOUTCOME']._serialized_end=1072
-  _globals['_DROPDOWNSELECTION']._serialized_start=1074
-  _globals['_DROPDOWNSELECTION']._serialized_end=1121
-  _globals['_OPEN']._serialized_start=1123
-  _globals['_OPEN']._serialized_end=1242
-  _globals['_OPEN_SELECTIONENTRY']._serialized_start=1194
-  _globals['_OPEN_SELECTIONENTRY']._serialized_end=1242
+  _globals['_CONFIGURATIONOUTCOME']._serialized_start=937
+  _globals['_CONFIGURATIONOUTCOME']._serialized_end=1061
+  _globals['_CONFIGTREENODE']._serialized_start=1064
+  _globals['_CONFIGTREENODE']._serialized_end=1217
+  _globals['_CONFIGURATIONINFO']._serialized_start=1220
+  _globals['_CONFIGURATIONINFO']._serialized_end=1562
+  _globals['_DROPDOWNSELECTION']._serialized_start=1564
+  _globals['_DROPDOWNSELECTION']._serialized_end=1611
+  _globals['_OPEN']._serialized_start=1613
+  _globals['_OPEN']._serialized_end=1732
+  _globals['_OPEN_SELECTIONENTRY']._serialized_start=1684
+  _globals['_OPEN_SELECTIONENTRY']._serialized_end=1732
+  _globals['_REQUESTCONFIGURATIONINFO']._serialized_start=1734
+  _globals['_REQUESTCONFIGURATIONINFO']._serialized_end=1760
 # @@protoc_insertion_point(module_scope)

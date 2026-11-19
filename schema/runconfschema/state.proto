@@ -23,16 +23,33 @@ enum NodeGroup {
 message NodeStatusInfo {
   reserved 3; // was: optional double node_value (replaced by the typed oneof below)
   NodeStatus node_state = 1;  // Is the node enabled/disabled/has its parent disabled?
-  repeated string node_path = 2; // Path to the node in the tree: [group_id, (parent,) label]
+  // Path used to address the node: [group_id, (parent,) label]. Empty for nodes that
+  // only appear in a hierarchy (see GroupNodes.systems) and cannot be addressed.
+  repeated string node_path = 2;
   optional string tooltip = 4; // Additional information to display if a GUI representing the node is hovered over
   optional NodeGroup node_group = 5; // Group of the node (toggles or adjustable)
-  repeated NodeStatusInfo children = 6; // Children of the node (note: This does not need to be sent unless we're building a tree, but it is included here for completeness)
+  repeated NodeStatusInfo children = 6; // Child nodes, in display order. Only filled in hierarchies (GroupNodes.systems).
   oneof value { // Current value of the node, in its native type. Unset if the node has no value.
     double double_value = 7;
     int64 int_value = 8;
     bool bool_value = 9;  // for toggles: true == included
     string string_value = 10;
   }
+  string label = 11; // Display label of the node
+}
+
+// Everything the frontend needs about one group of nodes (a tab in the UI)
+message GroupNodes {
+  string group_id = 1;
+  NodeGroup node_group = 2;
+  // Flat list of the group's addressable nodes, in display order. Used for the
+  // toggle buttons / value inputs. States account for every ancestor.
+  repeated NodeStatusInfo nodes = 3;
+  // The group's hierarchy: one root per system, with nested children. Nodes that
+  // can be addressed carry a node_path. States are relative to the direct parent.
+  repeated NodeStatusInfo systems = 4;
+  // Title of the group's tree-view panel. Unset if the group has no tree view.
+  optional string view_panel = 5;
 }
 
 message RequestSetNodeValue {
@@ -59,3 +76,10 @@ message ResponseNodeStatus {
 }
 
 message RequestReset {}
+
+message RequestNodeGroups {}
+
+message ResponseNodeGroups {
+  Response response = 1;
+  repeated GroupNodes groups = 2; // toggle groups first, then adjustable groups
+}

@@ -71,6 +71,7 @@ class NodeStatusInfo(_message.Message):
     INT_VALUE_FIELD_NUMBER: _builtins.int
     BOOL_VALUE_FIELD_NUMBER: _builtins.int
     STRING_VALUE_FIELD_NUMBER: _builtins.int
+    LABEL_FIELD_NUMBER: _builtins.int
     node_state: Global___NodeStatus.ValueType
     """Is the node enabled/disabled/has its parent disabled?"""
     tooltip: _builtins.str
@@ -82,13 +83,17 @@ class NodeStatusInfo(_message.Message):
     bool_value: _builtins.bool
     """for toggles: true == included"""
     string_value: _builtins.str
+    label: _builtins.str
+    """Display label of the node"""
     @_builtins.property
     def node_path(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
-        """Path to the node in the tree: [group_id, (parent,) label]"""
+        """Path used to address the node: [group_id, (parent,) label]. Empty for nodes that
+        only appear in a hierarchy (see GroupNodes.systems) and cannot be addressed.
+        """
 
     @_builtins.property
     def children(self) -> _containers.RepeatedCompositeFieldContainer[Global___NodeStatusInfo]:
-        """Children of the node (note: This does not need to be sent unless we're building a tree, but it is included here for completeness)"""
+        """Child nodes, in display order. Only filled in hierarchies (GroupNodes.systems)."""
 
     def __init__(
         self,
@@ -102,10 +107,11 @@ class NodeStatusInfo(_message.Message):
         int_value: _builtins.int = ...,
         bool_value: _builtins.bool = ...,
         string_value: _builtins.str = ...,
+        label: _builtins.str = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _typing.Literal["_node_group", b"_node_group", "_tooltip", b"_tooltip", "bool_value", b"bool_value", "double_value", b"double_value", "int_value", b"int_value", "node_group", b"node_group", "string_value", b"string_value", "tooltip", b"tooltip", "value", b"value"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["_node_group", b"_node_group", "_tooltip", b"_tooltip", "bool_value", b"bool_value", "children", b"children", "double_value", b"double_value", "int_value", b"int_value", "node_group", b"node_group", "node_path", b"node_path", "node_state", b"node_state", "string_value", b"string_value", "tooltip", b"tooltip", "value", b"value"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["_node_group", b"_node_group", "_tooltip", b"_tooltip", "bool_value", b"bool_value", "children", b"children", "double_value", b"double_value", "int_value", b"int_value", "label", b"label", "node_group", b"node_group", "node_path", b"node_path", "node_state", b"node_state", "string_value", b"string_value", "tooltip", b"tooltip", "value", b"value"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     _WhichOneofReturnType__node_group: _TypeAlias = _typing.Literal["node_group"]  # noqa: Y015
     _WhichOneofArgType__node_group: _TypeAlias = _typing.Literal["_node_group", b"_node_group"]  # noqa: Y015
@@ -121,6 +127,52 @@ class NodeStatusInfo(_message.Message):
     def WhichOneof(self, oneof_group: _WhichOneofArgType_value) -> _WhichOneofReturnType_value | None: ...
 
 Global___NodeStatusInfo: _TypeAlias = NodeStatusInfo  # noqa: Y015
+
+@_typing.final
+class GroupNodes(_message.Message):
+    """Everything the frontend needs about one group of nodes (a tab in the UI)"""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    GROUP_ID_FIELD_NUMBER: _builtins.int
+    NODE_GROUP_FIELD_NUMBER: _builtins.int
+    NODES_FIELD_NUMBER: _builtins.int
+    SYSTEMS_FIELD_NUMBER: _builtins.int
+    VIEW_PANEL_FIELD_NUMBER: _builtins.int
+    group_id: _builtins.str
+    node_group: Global___NodeGroup.ValueType
+    view_panel: _builtins.str
+    """Title of the group's tree-view panel. Unset if the group has no tree view."""
+    @_builtins.property
+    def nodes(self) -> _containers.RepeatedCompositeFieldContainer[Global___NodeStatusInfo]:
+        """Flat list of the group's addressable nodes, in display order. Used for the
+        toggle buttons / value inputs. States account for every ancestor.
+        """
+
+    @_builtins.property
+    def systems(self) -> _containers.RepeatedCompositeFieldContainer[Global___NodeStatusInfo]:
+        """The group's hierarchy: one root per system, with nested children. Nodes that
+        can be addressed carry a node_path. States are relative to the direct parent.
+        """
+
+    def __init__(
+        self,
+        *,
+        group_id: _builtins.str = ...,
+        node_group: Global___NodeGroup.ValueType = ...,
+        nodes: _abc.Iterable[Global___NodeStatusInfo] | None = ...,
+        systems: _abc.Iterable[Global___NodeStatusInfo] | None = ...,
+        view_panel: _builtins.str | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["_view_panel", b"_view_panel", "view_panel", b"view_panel"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["_view_panel", b"_view_panel", "group_id", b"group_id", "node_group", b"node_group", "nodes", b"nodes", "systems", b"systems", "view_panel", b"view_panel"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    _WhichOneofReturnType__view_panel: _TypeAlias = _typing.Literal["view_panel"]  # noqa: Y015
+    _WhichOneofArgType__view_panel: _TypeAlias = _typing.Literal["_view_panel", b"_view_panel"]  # noqa: Y015
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__view_panel) -> _WhichOneofReturnType__view_panel | None: ...
+
+Global___GroupNodes: _TypeAlias = GroupNodes  # noqa: Y015
 
 @_typing.final
 class RequestSetNodeValue(_message.Message):
@@ -234,3 +286,44 @@ class RequestReset(_message.Message):
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
 Global___RequestReset: _TypeAlias = RequestReset  # noqa: Y015
+
+@_typing.final
+class RequestNodeGroups(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___RequestNodeGroups: _TypeAlias = RequestNodeGroups  # noqa: Y015
+
+@_typing.final
+class ResponseNodeGroups(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    RESPONSE_FIELD_NUMBER: _builtins.int
+    GROUPS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def response(self) -> _common_pb2.Response: ...
+    @_builtins.property
+    def groups(self) -> _containers.RepeatedCompositeFieldContainer[Global___GroupNodes]:
+        """toggle groups first, then adjustable groups"""
+
+    def __init__(
+        self,
+        *,
+        response: _common_pb2.Response | None = ...,
+        groups: _abc.Iterable[Global___GroupNodes] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["response", b"response"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["groups", b"groups", "response", b"response"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___ResponseNodeGroups: _TypeAlias = ResponseNodeGroups  # noqa: Y015

@@ -25,25 +25,31 @@ _sym_db = _symbol_database.Default()
 from runconfschema import common_pb2 as runconfschema_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19runconfschema/state.proto\x12\x15\x64unedaq.runconfschema\x1a\x1arunconfschema/common.proto\"\xe9\x02\n\x0eNodeStatusInfo\x12\x35\n\nnode_state\x18\x01 \x01(\x0e\x32!.dunedaq.runconfschema.NodeStatus\x12\x11\n\tnode_path\x18\x02 \x03(\t\x12\x14\n\x07tooltip\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x39\n\nnode_group\x18\x05 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroupH\x02\x88\x01\x01\x12\x37\n\x08\x63hildren\x18\x06 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\x12\x16\n\x0c\x64ouble_value\x18\x07 \x01(\x01H\x00\x12\x13\n\tint_value\x18\x08 \x01(\x03H\x00\x12\x14\n\nbool_value\x18\t \x01(\x08H\x00\x12\x16\n\x0cstring_value\x18\n \x01(\tH\x00\x42\x07\n\x05valueB\n\n\x08_tooltipB\r\n\x0b_node_groupJ\x04\x08\x03\x10\x04\"\x82\x02\n\x13RequestSetNodeValue\x12\x34\n\nnode_group\x18\x01 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroup\x12\x0c\n\x04path\x18\x02 \x03(\t\x12\x16\n\x0c\x64ouble_value\x18\x03 \x01(\x01H\x00\x12\x14\n\nbool_value\x18\x04 \x01(\x08H\x00\x12>\n\x11node_status_value\x18\x05 \x01(\x0e\x32!.dunedaq.runconfschema.NodeStatusH\x00\x12\x13\n\tint_value\x18\x06 \x01(\x03H\x00\x12\x16\n\x0cstring_value\x18\x07 \x01(\tH\x00\x42\x0c\n\nnode_value\"W\n\x11RequestNodeStatus\x12\x34\n\nnode_group\x18\x01 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroup\x12\x0c\n\x04path\x18\x02 \x03(\t\"}\n\x12ResponseNodeStatus\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x34\n\x05nodes\x18\x02 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\"\x0e\n\x0cRequestReset*=\n\nNodeStatus\x12\x0c\n\x08INCLUDED\x10\x00\x12\x0c\n\x08\x45XCLUDED\x10\x01\x12\x13\n\x0fPARENT_EXCLUDED\x10\x02*(\n\tNodeGroup\x12\x0b\n\x07TOGGLES\x10\x00\x12\x0e\n\nADJUSTABLE\x10\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19runconfschema/state.proto\x12\x15\x64unedaq.runconfschema\x1a\x1arunconfschema/common.proto\"\xf8\x02\n\x0eNodeStatusInfo\x12\x35\n\nnode_state\x18\x01 \x01(\x0e\x32!.dunedaq.runconfschema.NodeStatus\x12\x11\n\tnode_path\x18\x02 \x03(\t\x12\x14\n\x07tooltip\x18\x04 \x01(\tH\x01\x88\x01\x01\x12\x39\n\nnode_group\x18\x05 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroupH\x02\x88\x01\x01\x12\x37\n\x08\x63hildren\x18\x06 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\x12\x16\n\x0c\x64ouble_value\x18\x07 \x01(\x01H\x00\x12\x13\n\tint_value\x18\x08 \x01(\x03H\x00\x12\x14\n\nbool_value\x18\t \x01(\x08H\x00\x12\x16\n\x0cstring_value\x18\n \x01(\tH\x00\x12\r\n\x05label\x18\x0b \x01(\tB\x07\n\x05valueB\n\n\x08_tooltipB\r\n\x0b_node_groupJ\x04\x08\x03\x10\x04\"\xea\x01\n\nGroupNodes\x12\x10\n\x08group_id\x18\x01 \x01(\t\x12\x34\n\nnode_group\x18\x02 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroup\x12\x34\n\x05nodes\x18\x03 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\x12\x36\n\x07systems\x18\x04 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\x12\x17\n\nview_panel\x18\x05 \x01(\tH\x00\x88\x01\x01\x42\r\n\x0b_view_panel\"\x82\x02\n\x13RequestSetNodeValue\x12\x34\n\nnode_group\x18\x01 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroup\x12\x0c\n\x04path\x18\x02 \x03(\t\x12\x16\n\x0c\x64ouble_value\x18\x03 \x01(\x01H\x00\x12\x14\n\nbool_value\x18\x04 \x01(\x08H\x00\x12>\n\x11node_status_value\x18\x05 \x01(\x0e\x32!.dunedaq.runconfschema.NodeStatusH\x00\x12\x13\n\tint_value\x18\x06 \x01(\x03H\x00\x12\x16\n\x0cstring_value\x18\x07 \x01(\tH\x00\x42\x0c\n\nnode_value\"W\n\x11RequestNodeStatus\x12\x34\n\nnode_group\x18\x01 \x01(\x0e\x32 .dunedaq.runconfschema.NodeGroup\x12\x0c\n\x04path\x18\x02 \x03(\t\"}\n\x12ResponseNodeStatus\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x34\n\x05nodes\x18\x02 \x03(\x0b\x32%.dunedaq.runconfschema.NodeStatusInfo\"\x0e\n\x0cRequestReset\"\x13\n\x11RequestNodeGroups\"z\n\x12ResponseNodeGroups\x12\x31\n\x08response\x18\x01 \x01(\x0b\x32\x1f.dunedaq.runconfschema.Response\x12\x31\n\x06groups\x18\x02 \x03(\x0b\x32!.dunedaq.runconfschema.GroupNodes*=\n\nNodeStatus\x12\x0c\n\x08INCLUDED\x10\x00\x12\x0c\n\x08\x45XCLUDED\x10\x01\x12\x13\n\x0fPARENT_EXCLUDED\x10\x02*(\n\tNodeGroup\x12\x0b\n\x07TOGGLES\x10\x00\x12\x0e\n\nADJUSTABLE\x10\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'runconfschema.state_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_NODESTATUS']._serialized_start=937
-  _globals['_NODESTATUS']._serialized_end=998
-  _globals['_NODEGROUP']._serialized_start=1000
-  _globals['_NODEGROUP']._serialized_end=1040
+  _globals['_NODESTATUS']._serialized_start=1334
+  _globals['_NODESTATUS']._serialized_end=1395
+  _globals['_NODEGROUP']._serialized_start=1397
+  _globals['_NODEGROUP']._serialized_end=1437
   _globals['_NODESTATUSINFO']._serialized_start=81
-  _globals['_NODESTATUSINFO']._serialized_end=442
-  _globals['_REQUESTSETNODEVALUE']._serialized_start=445
-  _globals['_REQUESTSETNODEVALUE']._serialized_end=703
-  _globals['_REQUESTNODESTATUS']._serialized_start=705
-  _globals['_REQUESTNODESTATUS']._serialized_end=792
-  _globals['_RESPONSENODESTATUS']._serialized_start=794
-  _globals['_RESPONSENODESTATUS']._serialized_end=919
-  _globals['_REQUESTRESET']._serialized_start=921
-  _globals['_REQUESTRESET']._serialized_end=935
+  _globals['_NODESTATUSINFO']._serialized_end=457
+  _globals['_GROUPNODES']._serialized_start=460
+  _globals['_GROUPNODES']._serialized_end=694
+  _globals['_REQUESTSETNODEVALUE']._serialized_start=697
+  _globals['_REQUESTSETNODEVALUE']._serialized_end=955
+  _globals['_REQUESTNODESTATUS']._serialized_start=957
+  _globals['_REQUESTNODESTATUS']._serialized_end=1044
+  _globals['_RESPONSENODESTATUS']._serialized_start=1046
+  _globals['_RESPONSENODESTATUS']._serialized_end=1171
+  _globals['_REQUESTRESET']._serialized_start=1173
+  _globals['_REQUESTRESET']._serialized_end=1187
+  _globals['_REQUESTNODEGROUPS']._serialized_start=1189
+  _globals['_REQUESTNODEGROUPS']._serialized_end=1208
+  _globals['_RESPONSENODEGROUPS']._serialized_start=1210
+  _globals['_RESPONSENODEGROUPS']._serialized_end=1332
 # @@protoc_insertion_point(module_scope)

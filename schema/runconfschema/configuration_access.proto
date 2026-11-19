@@ -45,7 +45,26 @@ message DropDownUpdate {
 // Response to Open
 message ConfigurationOutcome {
     Response response = 1;
-    repeated NodeStatusInfo config_trees = 5;   // one root per node group, populated on success
+    repeated GroupNodes groups = 5;   // full node state, populated on success
+}
+
+// An entry in the configuration (DAL object) tree
+message ConfigTreeNode {
+    string label = 1;               // object: "uid@Class"; relationship: its name
+    optional NodeStatus state = 2;  // set for objects, unset for relationship entries
+    repeated ConfigTreeNode children = 3;
+}
+
+// Summary of the loaded configuration
+message ConfigurationInfo {
+    Response response = 1;
+    bool config_open = 2;
+    string apparatus = 3;
+    optional string daq_version = 4;
+    optional string config_file = 5;    // configuration the session was loaded from
+    optional string current_file = 6;   // working copy being edited
+    optional string session_name = 7;   // id of the Session object (the root of config_tree)
+    repeated ConfigTreeNode config_tree = 8;  // entries below the session
 }
 
 // ------------
@@ -62,6 +81,8 @@ message DropDownSelection {
 message Open {
     map<string,string> selection =1; // it might be a bit redundant;
 }
+
+message RequestConfigurationInfo {}
     
 
 // sequence

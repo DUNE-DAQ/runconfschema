@@ -7,7 +7,6 @@ from collections import abc as _abc
 from grpc import aio as _aio
 from runconfschema import bootstrap_pb2 as _bootstrap_pb2
 from runconfschema import configuration_access_pb2 as _configuration_access_pb2
-from runconfschema import display_pb2 as _display_pb2
 from runconfschema import main_controls_pb2 as _main_controls_pb2
 from runconfschema import state_pb2 as _state_pb2
 import abc as _abc_1
@@ -43,8 +42,8 @@ class RunconfServiceStub:
     """State handling"""
     set_node_state: _grpc.UnaryUnaryMultiCallable[_state_pb2.RequestSetNodeValue, _state_pb2.ResponseNodeStatus]
     reset_node_state: _grpc.UnaryUnaryMultiCallable[_state_pb2.RequestReset, _state_pb2.ResponseNodeStatus]
-    get_views: _grpc.UnaryUnaryMultiCallable[_display_pb2.RequestViews, _display_pb2.DisplayViews]
-    """Display"""
+    get_node_groups: _grpc.UnaryUnaryMultiCallable[_state_pb2.RequestNodeGroups, _state_pb2.ResponseNodeGroups]
+    get_configuration_info: _grpc.UnaryUnaryMultiCallable[_configuration_access_pb2.RequestConfigurationInfo, _configuration_access_pb2.ConfigurationInfo]
     runconf_command: _grpc.UnaryUnaryMultiCallable[_main_controls_pb2.RunconfCommandRequest, _main_controls_pb2.RunconfCommandResponse]
     """General Operations"""
 
@@ -59,8 +58,8 @@ class RunconfServiceAsyncStub(RunconfServiceStub):
     """State handling"""
     set_node_state: _aio.UnaryUnaryMultiCallable[_state_pb2.RequestSetNodeValue, _state_pb2.ResponseNodeStatus]  # type: ignore[assignment]
     reset_node_state: _aio.UnaryUnaryMultiCallable[_state_pb2.RequestReset, _state_pb2.ResponseNodeStatus]  # type: ignore[assignment]
-    get_views: _aio.UnaryUnaryMultiCallable[_display_pb2.RequestViews, _display_pb2.DisplayViews]  # type: ignore[assignment]
-    """Display"""
+    get_node_groups: _aio.UnaryUnaryMultiCallable[_state_pb2.RequestNodeGroups, _state_pb2.ResponseNodeGroups]  # type: ignore[assignment]
+    get_configuration_info: _aio.UnaryUnaryMultiCallable[_configuration_access_pb2.RequestConfigurationInfo, _configuration_access_pb2.ConfigurationInfo]  # type: ignore[assignment]
     runconf_command: _aio.UnaryUnaryMultiCallable[_main_controls_pb2.RunconfCommandRequest, _main_controls_pb2.RunconfCommandResponse]  # type: ignore[assignment]
     """General Operations"""
 
@@ -110,12 +109,18 @@ class RunconfServiceServicer(metaclass=_abc_1.ABCMeta):
     ) -> _typing.Union[_state_pb2.ResponseNodeStatus, _abc.Awaitable[_state_pb2.ResponseNodeStatus]]: ...
 
     @_abc_1.abstractmethod
-    def get_views(
+    def get_node_groups(
         self,
-        request: _display_pb2.RequestViews,
+        request: _state_pb2.RequestNodeGroups,
         context: _ServicerContext,
-    ) -> _typing.Union[_display_pb2.DisplayViews, _abc.Awaitable[_display_pb2.DisplayViews]]:
-        """Display"""
+    ) -> _typing.Union[_state_pb2.ResponseNodeGroups, _abc.Awaitable[_state_pb2.ResponseNodeGroups]]: ...
+
+    @_abc_1.abstractmethod
+    def get_configuration_info(
+        self,
+        request: _configuration_access_pb2.RequestConfigurationInfo,
+        context: _ServicerContext,
+    ) -> _typing.Union[_configuration_access_pb2.ConfigurationInfo, _abc.Awaitable[_configuration_access_pb2.ConfigurationInfo]]: ...
 
     @_abc_1.abstractmethod
     def runconf_command(
