@@ -7,6 +7,7 @@ from runconfschema import bootstrap_pb2 as runconfschema_dot_bootstrap__pb2
 from runconfschema import configuration_access_pb2 as runconfschema_dot_configuration__access__pb2
 from runconfschema import main_controls_pb2 as runconfschema_dot_main__controls__pb2
 from runconfschema import state_pb2 as runconfschema_dot_state__pb2
+from runconfschema import subscription_pb2 as runconfschema_dot_subscription__pb2
 
 GRPC_GENERATED_VERSION = '1.75.0'
 GRPC_VERSION = grpc.__version__
@@ -87,6 +88,11 @@ class RunconfServiceStub(object):
                 request_serializer=runconfschema_dot_main__controls__pb2.RunconfCommandRequest.SerializeToString,
                 response_deserializer=runconfschema_dot_main__controls__pb2.RunconfCommandResponse.FromString,
                 _registered_method=True)
+        self.subscribe = channel.unary_stream(
+                '/dunedaq.runconfschema.RunconfService/subscribe',
+                request_serializer=runconfschema_dot_subscription__pb2.RequestSubscribe.SerializeToString,
+                response_deserializer=runconfschema_dot_subscription__pb2.StateUpdate.FromString,
+                _registered_method=True)
 
 
 class RunconfServiceServicer(object):
@@ -158,6 +164,13 @@ class RunconfServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def subscribe(self, request, context):
+        """Shared state: a ServerState snapshot first, then a StateUpdate per change by any frontend
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_RunconfServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -210,6 +223,11 @@ def add_RunconfServiceServicer_to_server(servicer, server):
                     servicer.runconf_command,
                     request_deserializer=runconfschema_dot_main__controls__pb2.RunconfCommandRequest.FromString,
                     response_serializer=runconfschema_dot_main__controls__pb2.RunconfCommandResponse.SerializeToString,
+            ),
+            'subscribe': grpc.unary_stream_rpc_method_handler(
+                    servicer.subscribe,
+                    request_deserializer=runconfschema_dot_subscription__pb2.RequestSubscribe.FromString,
+                    response_serializer=runconfschema_dot_subscription__pb2.StateUpdate.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -482,6 +500,33 @@ class RunconfService(object):
             '/dunedaq.runconfschema.RunconfService/runconf_command',
             runconfschema_dot_main__controls__pb2.RunconfCommandRequest.SerializeToString,
             runconfschema_dot_main__controls__pb2.RunconfCommandResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def subscribe(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/dunedaq.runconfschema.RunconfService/subscribe',
+            runconfschema_dot_subscription__pb2.RequestSubscribe.SerializeToString,
+            runconfschema_dot_subscription__pb2.StateUpdate.FromString,
             options,
             channel_credentials,
             insecure,

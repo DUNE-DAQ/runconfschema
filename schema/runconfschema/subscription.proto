@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package dunedaq.runconfschema;
+
+import "runconfschema/configuration_access.proto";
+import "runconfschema/main_controls.proto";
+import "runconfschema/state.proto";
+
+// Every frontend connected to a server shares one backend. A frontend calls
+// RunconfService.subscribe once and keeps the stream open: the first message is
+// a ServerState snapshot, and afterwards the server pushes a StateUpdate each
+// time any frontend changes the shared state, so all frontends show the same thing.
+
+message RequestSubscribe {}
+
+message ServerState {
+    Initialisation initialisation = 1;   // dropdown contents, current DAQ version
+    map<string, string> selection = 2;   // current value of each dropdown ("version", "session"); unset = nothing selected
+    bool config_open = 3;
+    repeated GroupNodes groups = 4;      // full node state, filled when config_open
+}
+
+message StateUpdate {
+    uint64 revision = 1;   // increases by one per change; a snapshot carries the revision it reflects
+    oneof update {
+        ServerState snapshot = 2;              // first message, and after a dropdown selection, open or reset
+        ResponseNodeStatus nodes = 3;          // nodes changed by set_node_state
+        RunconfCommandResponse shutdown = 4;   // QUIT or CREATE_QUIT: the server is stopping, the stream ends after this
+    }
+}

@@ -10,6 +10,7 @@ import "runconfschema/common.proto";
 import "runconfschema/configuration_access.proto";
 import "runconfschema/main_controls.proto";
 import "runconfschema/state.proto";
+import "runconfschema/subscription.proto";
 
 service RunconfService {
     // Called once, by whoever starts the server, with the context every frontend shares.
@@ -28,4 +29,6 @@ service RunconfService {
     rpc get_configuration_info(RequestConfigurationInfo) returns (ConfigurationInfo) {}
     // General Operations
     rpc runconf_command(RunconfCommandRequest) returns (RunconfCommandResponse) {}
+    // Shared state: a ServerState snapshot first, then a StateUpdate per change by any frontend
+    rpc subscribe(RequestSubscribe) returns (stream StateUpdate) {}
 }

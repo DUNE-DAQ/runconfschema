@@ -9,6 +9,7 @@ from runconfschema import bootstrap_pb2 as _bootstrap_pb2
 from runconfschema import configuration_access_pb2 as _configuration_access_pb2
 from runconfschema import main_controls_pb2 as _main_controls_pb2
 from runconfschema import state_pb2 as _state_pb2
+from runconfschema import subscription_pb2 as _subscription_pb2
 import abc as _abc_1
 import grpc as _grpc
 import sys
@@ -51,6 +52,8 @@ class RunconfServiceStub:
     get_configuration_info: _grpc.UnaryUnaryMultiCallable[_configuration_access_pb2.RequestConfigurationInfo, _configuration_access_pb2.ConfigurationInfo]
     runconf_command: _grpc.UnaryUnaryMultiCallable[_main_controls_pb2.RunconfCommandRequest, _main_controls_pb2.RunconfCommandResponse]
     """General Operations"""
+    subscribe: _grpc.UnaryStreamMultiCallable[_subscription_pb2.RequestSubscribe, _subscription_pb2.StateUpdate]
+    """Shared state: a ServerState snapshot first, then a StateUpdate per change by any frontend"""
 
 @_typing.type_check_only
 class RunconfServiceAsyncStub(RunconfServiceStub):
@@ -72,6 +75,8 @@ class RunconfServiceAsyncStub(RunconfServiceStub):
     get_configuration_info: _aio.UnaryUnaryMultiCallable[_configuration_access_pb2.RequestConfigurationInfo, _configuration_access_pb2.ConfigurationInfo]  # type: ignore[assignment]
     runconf_command: _aio.UnaryUnaryMultiCallable[_main_controls_pb2.RunconfCommandRequest, _main_controls_pb2.RunconfCommandResponse]  # type: ignore[assignment]
     """General Operations"""
+    subscribe: _aio.UnaryStreamMultiCallable[_subscription_pb2.RequestSubscribe, _subscription_pb2.StateUpdate]  # type: ignore[assignment]
+    """Shared state: a ServerState snapshot first, then a StateUpdate per change by any frontend"""
 
 class RunconfServiceServicer(metaclass=_abc_1.ABCMeta):
     @_abc_1.abstractmethod
@@ -150,5 +155,13 @@ class RunconfServiceServicer(metaclass=_abc_1.ABCMeta):
         context: _ServicerContext,
     ) -> _typing.Union[_main_controls_pb2.RunconfCommandResponse, _abc.Awaitable[_main_controls_pb2.RunconfCommandResponse]]:
         """General Operations"""
+
+    @_abc_1.abstractmethod
+    def subscribe(
+        self,
+        request: _subscription_pb2.RequestSubscribe,
+        context: _ServicerContext,
+    ) -> _typing.Union[_abc.Iterator[_subscription_pb2.StateUpdate], _abc.AsyncIterator[_subscription_pb2.StateUpdate]]:
+        """Shared state: a ServerState snapshot first, then a StateUpdate per change by any frontend"""
 
 def add_RunconfServiceServicer_to_server(servicer: RunconfServiceServicer, server: _typing.Union[_grpc.Server, _aio.Server]) -> None: ...
